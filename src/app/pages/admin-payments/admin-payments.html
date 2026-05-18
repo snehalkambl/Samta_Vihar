@@ -1,0 +1,105 @@
+<section class="page-banner">
+  <div class="container">
+    <h2>पेमेंट नोंदी</h2>
+  </div>
+</section>
+
+<section class="container section">
+  <div class="summary-grid">
+
+    <ng-container *ngIf="selectedType() === 'ALL'">
+      <div class="summary-card donation">
+        <h3>एकूण धम्म दान</h3>
+        <p>₹{{ totalDonation() }}</p>
+      </div>
+
+      <div class="summary-card event">
+        <h3>एकूण कार्यक्रम शुल्क</h3>
+        <p>₹{{ totalEvent() }}</p>
+      </div>
+
+      <div class="summary-card membership">
+        <h3>एकूण सदस्य शुल्क</h3>
+        <p>₹{{ totalMembership() }}</p>
+      </div>
+
+      <div class="summary-card total">
+        <h3>एकूण सर्व रक्कम</h3>
+        <p>₹{{ totalAll() }}</p>
+      </div>
+    </ng-container>
+
+    <div class="summary-card donation" *ngIf="selectedType() === 'DONATION'">
+      <h3>एकूण धम्म दान</h3>
+      <p>₹{{ totalDonation() }}</p>
+    </div>
+
+    <div class="summary-card event" *ngIf="selectedType() === 'EVENT'">
+      <h3>एकूण कार्यक्रम शुल्क</h3>
+      <p>₹{{ totalEvent() }}</p>
+    </div>
+
+    <div class="summary-card membership" *ngIf="selectedType() === 'MEMBERSHIP'">
+      <h3>एकूण सदस्य शुल्क</h3>
+      <p>₹{{ totalMembership() }}</p>
+    </div>
+  </div>
+
+  <div class="filter-row">
+    <label for="paymentType">पेमेंट प्रकार</label>
+
+    <select
+      id="paymentType"
+      [ngModel]="selectedType()"
+      (ngModelChange)="onTypeChange($event)"
+    >
+      <option value="ALL">सर्व</option>
+      <option value="EVENT">कार्यक्रम शुल्क</option>
+      <option value="DONATION">धम्म दान</option>
+      <option value="MEMBERSHIP">सदस्य शुल्क</option>
+    </select>
+  </div>
+
+  <div *ngIf="loading()" class="info-message">
+    पेमेंट माहिती लोड होत आहे...
+  </div>
+
+  <div *ngIf="errorMessage()" class="error-message">
+    {{ errorMessage() }}
+  </div>
+
+  <div *ngIf="!loading() && payments().length === 0" class="info-message">
+    कोणतीही पेमेंट नोंद उपलब्ध नाही.
+  </div>
+
+  <div class="table-wrapper" *ngIf="!loading() && payments().length > 0">
+    <table>
+      <thead>
+        <tr>
+          <th>नाव</th>
+          <th>मोबाईल</th>
+          <th>प्रकार</th>
+          <th>रक्कम</th>
+          <th>मोड</th>
+          <th>Transaction ID</th>
+          <th>स्थिती</th>
+          <th>दिनांक</th>
+          <th>Remarks</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let payment of payments()">
+          <td>{{ payment.payerName }}</td>
+          <td>{{ payment.mobile }}</td>
+          <td>{{ payment.paymentType }}</td>
+          <td>₹{{ payment.amount }}</td>
+          <td>{{ payment.paymentMode }}</td>
+          <td>{{ payment.transactionId || '-' }}</td>
+          <td>{{ payment.status }}</td>
+          <td>{{ payment.paymentDate ? (payment.paymentDate | date:'dd-MM-yyyy, hh:mm a') : '-' }}</td>
+          <td>{{ payment.remarks || '-' }}</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</section>

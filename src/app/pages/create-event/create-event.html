@@ -1,0 +1,165 @@
+<section class="page-banner">
+  <div class="container banner-inner">
+    <div>
+      <span class="section-tag">कार्यक्रम व्यवस्थापन</span>
+
+      <h2>{{ isEditMode ? 'कार्यक्रम अपडेट करा' : 'नवीन कार्यक्रम तयार करा' }}</h2>
+
+      <p>
+        {{
+          isEditMode
+            ? 'कार्यक्रमाची माहिती बदलून अपडेट करा.'
+            : 'नवीन कार्यक्रमाची माहिती, फोटो आणि इतर तपशील येथे भरा.'
+        }}
+      </p>
+    </div>
+
+    <div class="mini-panchashil" aria-hidden="true">
+      <span class="blue"></span>
+      <span class="yellow"></span>
+      <span class="red"></span>
+      <span class="white"></span>
+      <span class="orange"></span>
+    </div>
+  </div>
+</section>
+
+<section class="container section">
+  <div class="form-card">
+    <div *ngIf="successMessage()" class="success-message">
+      {{ successMessage() }}
+    </div>
+
+    <div *ngIf="errorMessage()" class="error-message">
+      {{ errorMessage() }}
+    </div>
+
+    <form (ngSubmit)="submitForm()">
+      <div class="form-group">
+        <label>कार्यक्रमाचे नाव</label>
+        <input type="text" [(ngModel)]="eventForm.title" name="title" required />
+      </div>
+
+      <div class="form-group">
+        <label>लघु वर्णन</label>
+        <textarea [(ngModel)]="eventForm.shortDescription" name="shortDescription" rows="3"></textarea>
+      </div>
+
+      <div class="form-group">
+        <label>सविस्तर वर्णन</label>
+        <textarea [(ngModel)]="eventForm.fullDescription" name="fullDescription" rows="5"></textarea>
+      </div>
+
+      <div class="form-row">
+        <div class="form-group">
+          <label>तारीख</label>
+          <input type="date" [(ngModel)]="eventForm.eventDate" name="eventDate" required />
+        </div>
+
+        <div class="form-group">
+          <label>वेळ</label>
+          <input
+            type="text"
+            [(ngModel)]="eventForm.eventTime"
+            name="eventTime"
+            placeholder="उदा. 10:00 AM"
+          />
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label>स्थळ</label>
+        <input type="text" [(ngModel)]="eventForm.location" name="location" />
+      </div>
+
+      <div class="form-row">
+        <div class="form-group">
+          <label>आयोजक</label>
+          <input type="text" [(ngModel)]="eventForm.organizer" name="organizer" />
+        </div>
+
+        <div class="form-group">
+          <label>मुख्य वक्ते</label>
+          <input type="text" [(ngModel)]="eventForm.speakerName" name="speakerName" />
+        </div>
+      </div>
+
+      <div class="form-row">
+        <div class="form-group">
+          <label>संपर्क व्यक्ती</label>
+          <input type="text" [(ngModel)]="eventForm.contactPerson" name="contactPerson" />
+        </div>
+
+        <div class="form-group">
+          <label>संपर्क मोबाईल</label>
+          <input type="text" [(ngModel)]="eventForm.contactMobile" name="contactMobile" />
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label>सूचना / नियम</label>
+        <textarea [(ngModel)]="eventForm.rules" name="rules" rows="4"></textarea>
+      </div>
+
+      <div class="upload-card">
+        <div class="form-group">
+          <label>{{ isEditMode ? 'मुख्य फोटो बदला' : 'मुख्य फोटो अपलोड करा' }}</label>
+
+          <input type="file" accept="image/*" (change)="onCoverImageSelected($event)" />
+
+          <div class="image-preview" *ngIf="coverImagePreview">
+            <img [src]="coverImagePreview" alt="Cover Preview" />
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label>इतर फोटो अपलोड करा</label>
+
+          <input type="file" accept="image/*" multiple (change)="onGalleryImagesSelected($event)" />
+
+          <div class="gallery-preview" *ngIf="galleryImagePreviews.length > 0">
+            <img *ngFor="let img of galleryImagePreviews" [src]="img" alt="Gallery Preview" />
+          </div>
+        </div>
+      </div>
+
+      <div class="form-row">
+        <div class="form-group">
+          <label>शुल्क</label>
+          <input type="number" [(ngModel)]="eventForm.amount" name="amount" />
+        </div>
+
+        <div class="form-group checkbox-group">
+          <label>
+            <input type="checkbox" [(ngModel)]="eventForm.isPaid" name="isPaid" />
+            सशुल्क कार्यक्रम
+          </label>
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label>स्थिती</label>
+        <select [(ngModel)]="eventForm.status" name="status">
+          <option value="ACTIVE">ACTIVE</option>
+          <option value="INACTIVE">INACTIVE</option>
+        </select>
+      </div>
+
+      <div class="button-row">
+        <button type="submit" class="submit-btn" [disabled]="loading()">
+          {{
+            loading()
+              ? 'जतन होत आहे...'
+              : isEditMode
+                ? 'कार्यक्रम अपडेट करा'
+                : 'कार्यक्रम जतन करा'
+          }}
+        </button>
+
+        <a routerLink="/events" class="cancel-btn">
+          रद्द करा
+        </a>
+      </div>
+    </form>
+  </div>
+</section>

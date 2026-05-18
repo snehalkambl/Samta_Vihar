@@ -1,0 +1,118 @@
+<section class="page-banner">
+  <div class="container banner-inner">
+    <div>
+      <span class="section-tag">कार्यक्रम तपशील</span>
+      <h2>अधिक माहिती</h2>
+      <p>कार्यक्रमाची संपूर्ण माहिती, फोटो आणि संपर्क तपशील येथे पहा.</p>
+    </div>
+
+    <div class="mini-panchashil" aria-hidden="true">
+      <span class="blue"></span>
+      <span class="yellow"></span>
+      <span class="red"></span>
+      <span class="white"></span>
+      <span class="orange"></span>
+    </div>
+  </div>
+</section>
+
+<section class="container section">
+  <div *ngIf="loading()" class="info-message">
+    कार्यक्रमाची माहिती लोड होत आहे...
+  </div>
+
+  <div *ngIf="errorMessage()" class="error-message">
+    {{ errorMessage() }}
+  </div>
+
+  <div class="event-details-card" *ngIf="!loading() && event() as e">
+    <div class="top-row">
+      <div class="title-block">
+        <div class="title-row">
+          <h3>{{ e.title }}</h3>
+
+          <span class="type-badge" *ngIf="e.isPaid">सशुल्क</span>
+          <span class="type-badge free" *ngIf="!e.isPaid">विनामूल्य</span>
+        </div>
+
+        <p class="short-desc" *ngIf="e.shortDescription">
+          {{ e.shortDescription }}
+        </p>
+      </div>
+
+      <div class="top-actions">
+        <a
+          [routerLink]="['/payment']"
+          [queryParams]="{ type: 'EVENT', eventId: e.id, amount: e.amount }"
+          class="pay-btn"
+          *ngIf="e.isPaid"
+        >
+          शुल्क भरा
+        </a>
+
+        <a [routerLink]="['/events']" class="back-btn">
+          ← कार्यक्रम यादी
+        </a>
+      </div>
+    </div>
+
+    <div class="details-layout">
+      <div class="left-panel">
+        <div class="main-image-wrap">
+          <img
+            [src]="selectedImage()"
+            [alt]="e.title"
+            class="main-image"
+            (error)="setFallbackImage($event)"
+          />
+        </div>
+
+        <div class="gallery-strip" *ngIf="e.images?.length">
+          <img
+            *ngFor="let img of e.images"
+            [src]="img.imageUrl"
+            [alt]="e.title"
+            class="thumb-image"
+            [class.active]="selectedImage() === img.imageUrl"
+            (click)="setSelectedImage(img.imageUrl)"
+            (error)="setFallbackImage($event)"
+          />
+        </div>
+      </div>
+
+      <div class="right-panel">
+        <div class="meta-card">
+          <h4>मुख्य माहिती</h4>
+
+          <div class="meta-grid">
+            <p><strong>तारीख:</strong> {{ e.eventDate || '-' }}</p>
+            <p><strong>वेळ:</strong> {{ e.eventTime || '-' }}</p>
+            <p><strong>स्थळ:</strong> {{ e.location || '-' }}</p>
+            <p><strong>शुल्क:</strong> {{ e.isPaid ? ('₹' + (e.amount || 0)) : 'विनामूल्य' }}</p>
+          </div>
+        </div>
+
+        <div class="meta-card" *ngIf="e.organizer || e.speakerName || e.contactPerson || e.contactMobile">
+          <h4>आयोजन माहिती</h4>
+
+          <div class="meta-grid">
+            <p *ngIf="e.organizer"><strong>आयोजक:</strong> {{ e.organizer }}</p>
+            <p *ngIf="e.speakerName"><strong>मुख्य वक्ते:</strong> {{ e.speakerName }}</p>
+            <p *ngIf="e.contactPerson"><strong>संपर्क व्यक्ती:</strong> {{ e.contactPerson }}</p>
+            <p *ngIf="e.contactMobile"><strong>संपर्क मोबाईल:</strong> {{ e.contactMobile }}</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="content-section" *ngIf="e.fullDescription">
+      <h4>सविस्तर वर्णन</h4>
+      <p>{{ e.fullDescription }}</p>
+    </div>
+
+    <div class="content-section" *ngIf="e.rules">
+      <h4>सूचना / नियम</h4>
+      <p>{{ e.rules }}</p>
+    </div>
+  </div>
+</section>

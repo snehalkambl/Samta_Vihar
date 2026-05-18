@@ -1,0 +1,94 @@
+<section class="page-banner">
+  <div class="container banner-inner">
+    <div>
+      <span class="section-tag">Admin Panel</span>
+      <h2>उत्पन्न नोंदी</h2>
+      <p>विहारातील सर्व उत्पन्न नोंदी, प्रकारनिहाय तपशील आणि एकूण रक्कम येथे पहा.</p>
+    </div>
+
+    <div class="mini-panchashil" aria-hidden="true">
+      <span class="blue"></span>
+      <span class="yellow"></span>
+      <span class="red"></span>
+      <span class="white"></span>
+      <span class="orange"></span>
+    </div>
+  </div>
+</section>
+
+<section class="container section">
+  <div class="top-row">
+    <div class="summary-card">
+      <span class="summary-label">एकूण उत्पन्न</span>
+      <h3>₹{{ totalIncome() }}</h3>
+      <p>फिल्टरनुसार सध्याची एकूण रक्कम</p>
+    </div>
+
+    <a routerLink="/admin/income/create" class="create-btn">
+      ➕ उत्पन्न नोंद करा
+    </a>
+  </div>
+
+  <div class="filter-row">
+    <div class="filter-box">
+      <label for="incomeType">उत्पन्न प्रकार</label>
+
+      <select
+        id="incomeType"
+        [ngModel]="selectedType()"
+        (ngModelChange)="onTypeChange($event)"
+      >
+        <option value="ALL">सर्व</option>
+        <option value="MARRIAGE">लग्न समारंभ</option>
+        <option value="SMRUTI_DIN">स्मृतीदिन</option>
+        <option value="BIRTHDAY">वाढदिवस</option>
+        <option value="NAMING_CEREMONY">बारसे / नामकरण</option>
+        <option value="MEETING">सभा / मिटिंग</option>
+        <option value="HALL_RENT">हॉल भाडे</option>
+        <option value="DONATION">देणगी</option>
+        <option value="OTHER">इतर</option>
+      </select>
+    </div>
+  </div>
+
+  <div *ngIf="loading()" class="info-message">
+    उत्पन्न माहिती लोड होत आहे...
+  </div>
+
+  <div *ngIf="errorMessage()" class="error-message">
+    {{ errorMessage() }}
+  </div>
+
+  <div *ngIf="!loading() && incomes().length === 0" class="info-message">
+    कोणतीही उत्पन्न नोंद उपलब्ध नाही.
+  </div>
+
+  <div class="table-wrapper" *ngIf="!loading() && incomes().length > 0">
+    <table>
+      <thead>
+        <tr>
+          <th>प्रकार</th>
+          <th>नाव</th>
+          <th>मोबाईल</th>
+          <th>रक्कम</th>
+          <th>दिनांक</th>
+          <th>पेमेंट मोड</th>
+          <th>वर्णन</th>
+          <th>Remarks</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let income of incomes()">
+          <td>{{ getIncomeTypeLabel(income.incomeType) }}</td>
+          <td>{{ income.personName }}</td>
+          <td>{{ income.mobile || '-' }}</td>
+          <td class="amount-cell">₹{{ income.amount }}</td>
+          <td>{{ income.incomeDate | date:'dd-MM-yyyy' }}</td>
+          <td>{{ income.paymentMode || '-' }}</td>
+          <td>{{ income.description || '-' }}</td>
+          <td>{{ income.remarks || '-' }}</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</section>

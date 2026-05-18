@@ -1,0 +1,62 @@
+<section class="home-hero">
+  <div class="hero-overlay">
+    <div class="container">
+      <div class="hero-content">
+        <h1>
+          समता बुद्धविहार,
+          <span>ममतानगर येथे स्वागत</span>
+        </h1>
+
+        <p>
+          धम्म, प्रज्ञा, करुणा आणि समाजसेवेच्या भावनेतून
+          एकत्र येणारे आपले पवित्र स्थळ.
+        </p>
+
+        <div class="hero-btns">
+          <a routerLink="/events" class="primary-btn">कार्यक्रम पहा</a>
+          <a routerLink="/about" class="secondary-btn">आमच्याविषयी</a>
+          <a [routerLink]="['/payment']" [queryParams]="{ type: 'DONATION', amount: 100 }" class="outline-btn">
+            धम्म दान करा
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="about-section">
+  <div class="container about-layout">
+    <div class="about-content">
+      <span class="section-badge">समता • धम्म • बंधुता</span>
+
+      <h2>समता बुद्धविहार बद्दल</h2>
+
+      <p>
+        समता बुद्धविहार हे समाजातील बंधुता, समता आणि मानवतेचा संदेश
+        पोहोचविणारे प्रेरणास्थान आहे.
+      </p>
+
+      <p>
+        येथे धार्मिक, सामाजिक आणि सांस्कृतिक कार्यक्रमांचे आयोजन केले जाते.
+        धम्माच्या विचारांद्वारे समाजात जागृती निर्माण करणे हे आमचे ध्येय आहे.
+      </p>
+
+      <div class="about-features">
+        <div class="feature-card">
+          <h4>धम्म कार्यक्रम</h4>
+          <p>बुद्ध जयंती, धम्म प्रवचने आणि सामूहिक कार्यक्रम.</p>
+        </div>
+
+        <div class="feature-card">
+          <h4>सामाजिक उपक्रम</h4>
+          <p>समाज एकोपा, शैक्षणिक मदत आणि जनजागृती उपक्रम.</p>
+        </div>
+
+        <div class="feature-card">
+          <h4>सदस्य नोंदणी</h4>
+          <p>विहाराशी जोडले जाऊन विविध उपक्रमांत सहभागी व्हा.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

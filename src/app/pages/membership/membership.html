@@ -1,0 +1,112 @@
+<section class="page-banner">
+  <div class="container banner-inner">
+    <div>
+      <span class="section-tag">सदस्य नोंदणी</span>
+      <h2>सदस्य नोंदणी</h2>
+      <p>विहाराशी जोडले जाऊन विविध उपक्रमांत सहभागी व्हा.</p>
+    </div>
+
+    <div class="mini-panchashil" aria-hidden="true">
+      <span class="blue"></span>
+      <span class="yellow"></span>
+      <span class="red"></span>
+      <span class="white"></span>
+      <span class="orange"></span>
+    </div>
+  </div>
+</section>
+
+<section class="container section">
+  <div class="form-layout">
+    <div class="form-card">
+      <div *ngIf="successMessage()" class="success-message">
+        {{ successMessage() }}
+      </div>
+
+      <div *ngIf="errorMessage()" class="error-message">
+        {{ errorMessage() }}
+      </div>
+
+      <form (ngSubmit)="onSubmit()">
+        <div class="form-group">
+          <label>पूर्ण नाव</label>
+          <input
+            type="text"
+            [(ngModel)]="member.fullName"
+            name="fullName"
+            required
+          />
+        </div>
+
+        <div class="form-group">
+          <label>मोबाईल क्रमांक</label>
+          <input
+            type="text"
+            [(ngModel)]="member.mobile"
+            name="mobile"
+            required
+          />
+        </div>
+
+        <div class="form-group">
+          <label>पत्ता</label>
+          <textarea
+            [(ngModel)]="member.address"
+            name="address"
+            rows="3"
+          ></textarea>
+        </div>
+
+        <div class="form-row">
+          <div class="form-group">
+            <label>पेमेंट स्थिती</label>
+            <select [(ngModel)]="member.paymentStatus" name="paymentStatus">
+              <option value="PAID">Paid</option>
+              <option value="UNPAID">Unpaid</option>
+            </select>
+          </div>
+
+          <div class="form-group">
+            <label>पेमेंट मोड</label>
+            <select [(ngModel)]="member.paymentMode" name="paymentMode">
+              <option value="CASH">Cash</option>
+              <option value="ONLINE">Online</option>
+            </select>
+          </div>
+        </div>
+
+        <div
+          class="form-group"
+          *ngIf="member.paymentStatus === 'PAID' && member.paymentMode === 'ONLINE'"
+        >
+          <label>Transaction ID</label>
+          <input
+            type="text"
+            [(ngModel)]="member.transactionId"
+            name="transactionId"
+          />
+        </div>
+
+        <button type="submit" [disabled]="loading()">
+          {{ loading() ? 'नोंदणी होत आहे...' : 'नोंदणी करा' }}
+        </button>
+      </form>
+    </div>
+
+    <div class="side-info-card">
+      <h3>सदस्यत्वाचे फायदे</h3>
+
+      <ul>
+        <li>विहारातील सर्व कार्यक्रमांमध्ये सहभाग</li>
+        <li>सामाजिक आणि सांस्कृतिक उपक्रमांत भाग</li>
+        <li>समाजाशी जोडलेले नेटवर्क</li>
+        <li>धम्म आणि सामाजिक कार्यात योगदान</li>
+      </ul>
+
+      <div class="info-box">
+        <strong>टीप:</strong>
+        <p>नोंदणी केल्यानंतर admin द्वारे तुमची माहिती verify केली जाईल.</p>
+      </div>
+    </div>
+  </div>
+</section>

@@ -1,0 +1,77 @@
+<section class="page-banner">
+  <div class="container banner-inner">
+    <div>
+      <span class="section-tag">Admin Panel</span>
+      <h2>खर्च नोंदी</h2>
+      <p>विहारातील सर्व खर्च नोंदी आणि एकूण खर्च येथे पहा.</p>
+    </div>
+  </div>
+</section>
+
+<section class="container section">
+  <div class="top-row">
+    <div>
+      <h3>सर्व खर्च यादी</h3>
+      <p>एकूण {{ expenses().length }} खर्च नोंदी</p>
+    </div>
+
+    <div class="total-card">
+      <span>एकूण खर्च</span>
+      <strong>₹{{ totalExpense() }}</strong>
+    </div>
+  </div>
+
+  <div *ngIf="loading()" class="info-message">
+    खर्च नोंदी लोड होत आहेत...
+  </div>
+
+  <div *ngIf="errorMessage()" class="error-message">
+    {{ errorMessage() }}
+  </div>
+
+  <div *ngIf="!loading() && expenses().length === 0" class="info-message">
+    कोणतीही खर्च नोंद उपलब्ध नाही.
+  </div>
+
+  <div class="table-card" *ngIf="!loading() && expenses().length > 0">
+    <table>
+      <thead>
+        <tr>
+          <th>शीर्षक</th>
+          <th>प्रकार</th>
+          <th>रक्कम</th>
+          <th>तारीख</th>
+          <th>नोंद</th>
+        </tr>
+      </thead>
+
+      <tbody>
+        <tr *ngFor="let expense of expenses()">
+          <td>
+            <strong>{{ expense.title || expense.expenseName || '-' }}</strong>
+          </td>
+
+          <td>
+            <span class="badge">{{ expense.expenseType || expense.type || '-' }}</span>
+          </td>
+
+          <td class="amount">₹{{ expense.amount || 0 }}</td>
+
+          <td>{{ expense.expenseDate || expense.date || '-' }}</td>
+
+          <td>{{ expense.description || expense.remark || '-' }}</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="back-row">
+    <a routerLink="/admin/dashboard" class="back-btn">
+      ← Dashboard ला परत जा
+    </a>
+
+    <a routerLink="/admin/expenses/create" class="add-btn">
+      + खर्च जोडा
+    </a>
+  </div>
+</section>

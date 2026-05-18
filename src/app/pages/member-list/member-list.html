@@ -1,0 +1,70 @@
+<section class="page-banner">
+  <div class="container banner-inner">
+    <div>
+      <span class="section-tag">सदस्य माहिती</span>
+      <h2>नोंदणीकृत सदस्य</h2>
+      <p>विहाराशी जोडलेल्या सर्व सदस्यांची यादी येथे पाहू शकता.</p>
+    </div>
+
+    <div class="mini-panchashil" aria-hidden="true">
+      <span class="blue"></span>
+      <span class="yellow"></span>
+      <span class="red"></span>
+      <span class="white"></span>
+      <span class="orange"></span>
+    </div>
+  </div>
+</section>
+
+<section class="container section">
+  <div class="top-row">
+    <div class="summary-card">
+      <span class="summary-label">एकूण सदस्य</span>
+      <h3>{{ members().length }}</h3>
+      <p>नोंदणीकृत सदस्यांची संख्या</p>
+    </div>
+
+    <button class="download-btn" (click)="downloadMembersExcel()" [disabled]="members().length === 0">
+      सदस्य Excel डाउनलोड
+    </button>
+  </div>
+
+  <div *ngIf="loading()" class="info-message">
+    सदस्यांची माहिती लोड होत आहे...
+  </div>
+
+  <div *ngIf="errorMessage()" class="error-message">
+    {{ errorMessage() }}
+  </div>
+
+  <div *ngIf="!loading() && members().length === 0" class="info-message">
+    कोणताही सदस्य उपलब्ध नाही.
+  </div>
+
+  <div class="table-wrapper" *ngIf="!loading() && members().length > 0">
+    <table>
+      <thead>
+        <tr>
+          <th>क्रमांक</th>
+          <th>पूर्ण नाव</th>
+          <th>मोबाईल क्रमांक</th>
+          <th>पत्ता</th>
+          <th>पेमेंट स्थिती</th>
+          <th>पेमेंट मोड</th>
+          <th>Transaction ID</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let member of members(); let i = index">
+          <td>{{ i + 1 }}</td>
+          <td>{{ member.fullName }}</td>
+          <td>{{ member.mobile }}</td>
+          <td>{{ member.address }}</td>
+          <td>{{ member.paymentStatus }}</td>
+          <td>{{ member.paymentMode }}</td>
+          <td>{{ member.transactionId || '-' }}</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</section>

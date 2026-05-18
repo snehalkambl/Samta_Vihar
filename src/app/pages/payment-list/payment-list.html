@@ -1,0 +1,74 @@
+<section class="page-banner">
+  <div class="container banner-inner">
+    <div>
+      <span class="section-tag">Admin Panel</span>
+      <h2>पेमेंट नोंदी</h2>
+      <p>कार्यक्रम, सदस्य शुल्क आणि धम्म दान पेमेंट तपशील येथे पहा.</p>
+    </div>
+  </div>
+</section>
+
+<section class="container section">
+  <div class="top-row">
+    <div>
+      <h3>सर्व पेमेंट यादी</h3>
+      <p>एकूण {{ payments().length }} पेमेंट नोंदी</p>
+    </div>
+
+    <div class="total-card">
+      <span>एकूण रक्कम</span>
+      <strong>₹{{ totalAmount() }}</strong>
+    </div>
+  </div>
+
+  <div *ngIf="loading()" class="info-message">
+    पेमेंट नोंदी लोड होत आहेत...
+  </div>
+
+  <div *ngIf="errorMessage()" class="error-message">
+    {{ errorMessage() }}
+  </div>
+
+  <div *ngIf="!loading() && payments().length === 0" class="info-message">
+    कोणतीही पेमेंट नोंद उपलब्ध नाही.
+  </div>
+
+  <div class="table-card" *ngIf="!loading() && payments().length > 0">
+    <table>
+      <thead>
+        <tr>
+          <th>नाव</th>
+          <th>प्रकार</th>
+          <th>पेमेंट मोड</th>
+          <th>रक्कम</th>
+          <th>Transaction ID</th>
+        </tr>
+      </thead>
+
+      <tbody>
+        <tr *ngFor="let payment of payments()">
+          <td>
+            <strong>{{ payment.payerName || '-' }}</strong>
+            <small>{{ payment.mobileNumber || '' }}</small>
+          </td>
+
+          <td>
+            <span class="badge">{{ payment.paymentType || '-' }}</span>
+          </td>
+
+          <td>{{ payment.paymentMode || '-' }}</td>
+
+          <td class="amount">₹{{ payment.amount || 0 }}</td>
+
+          <td>{{ payment.transactionId || '-' }}</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="back-row">
+    <a routerLink="/admin/dashboard" class="back-btn">
+      ← Dashboard ला परत जा
+    </a>
+  </div>
+</section>

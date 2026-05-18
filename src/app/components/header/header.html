@@ -1,0 +1,74 @@
+<header class="site-header">
+
+  <!-- ===== TOP BAR ===== -->
+  <div class="top-bar">
+    <div class="container top-inner">
+
+      <!-- ===== LOGO ===== -->
+      <div class="logo">
+        <img src="/images/samta-vihar-logo.jpeg" alt="समता बुद्धविहार" />
+
+        <span>समता बुद्धविहार</span>
+      </div>
+
+      <!-- ===== DEVELOPED BY ===== -->
+      <div class="developer-text">
+        Developed By
+        <span>NIHON IT SOLUTIONS</span>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- ===== NAVBAR ===== -->
+  <div class="nav-bar">
+
+    <div class="container nav-inner">
+
+      <!-- ===== NAVIGATION ===== -->
+      <nav>
+
+        <a routerLink="/">
+          मुख्यपृष्ठ
+        </a>
+
+        <a routerLink="/about">
+          आमच्याविषयी
+        </a>
+
+        <a routerLink="/events">
+          कार्यक्रम
+        </a>
+
+        <a routerLink="/membership">
+          सदस्य
+        </a>
+
+        <a routerLink="/contact">
+          संपर्क
+        </a>
+
+      </nav>
+
+      <!-- ===== RIGHT SECTION ===== -->
+      <div class="right-section">
+
+        <a *ngIf="isLoggedIn() && isAdmin()" routerLink="/admin/dashboard" class="admin-btn">
+          Admin
+        </a>
+
+        <a *ngIf="!isLoggedIn()" routerLink="/login" class="login-btn">
+          Login
+        </a>
+
+        <button *ngIf="isLoggedIn()" (click)="logout()" class="logout-btn">
+          Logout
+        </button>
+
+      </div>
+
+    </div>
+
+  </div>
+
+</header>

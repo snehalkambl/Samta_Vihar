@@ -1,0 +1,156 @@
+.page-banner {
+  background: linear-gradient(135deg, #2f4a9a, #1f3475);
+  color: #ffffff;
+  padding: 48px 0;
+  text-align: center;
+}
+
+.page-banner h2 {
+  margin: 0;
+  font-size: 34px;
+}
+
+.container {
+  width: min(1200px, 95%);
+  margin: 0 auto;
+}
+
+.section {
+  padding: 40px 0 60px;
+  background: #f7faff;
+}
+
+/* ===== Summary Cards ===== */
+.summary-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 18px;
+  margin-bottom: 28px;
+}
+
+.summary-card {
+  background: #ffffff;
+  border-radius: 16px;
+  padding: 20px;
+  box-shadow: 0 8px 22px rgba(31, 52, 117, 0.08);
+  transition: transform 0.2s ease;
+}
+
+.summary-card:hover {
+  transform: translateY(-3px);
+}
+
+.summary-card h3 {
+  margin: 0 0 8px;
+  font-size: 16px;
+  color: #44546c;
+}
+
+.summary-card p {
+  margin: 0;
+  font-size: 28px;
+  font-weight: 700;
+  color: #17233a;
+}
+
+/* Left color strips */
+.summary-card.donation {
+  border-left: 6px solid #1f7a1f;
+}
+
+.summary-card.event {
+  border-left: 6px solid #d32f2f;
+}
+
+.summary-card.membership {
+  border-left: 6px solid #2f4a9a;
+}
+
+.summary-card.total {
+  border-left: 6px solid #f59e0b;
+}
+
+/* ===== Filter ===== */
+.filter-row {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 20px;
+  flex-wrap: wrap;
+}
+
+.filter-row label {
+  font-weight: 600;
+  color: #23324f;
+}
+
+.filter-row select {
+  padding: 10px 14px;
+  border: 1px solid #cfd8e6;
+  border-radius: 10px;
+  background: #ffffff;
+  outline: none;
+}
+
+.filter-row select:focus {
+  border-color: #2f4a9a;
+  box-shadow: 0 0 0 2px rgba(47, 74, 154, 0.15);
+}
+
+/* ===== Table ===== */
+.table-wrapper {
+  background: #ffffff;
+  border-radius: 16px;
+  box-shadow: 0 8px 24px rgba(31, 52, 117, 0.08);
+  overflow-x: auto;
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+/* 🔥 Updated Header (Blue instead of Red) */
+thead {
+  background: linear-gradient(135deg, #2f4a9a, #1f3475);
+  color: white;
+}
+
+th {
+  padding: 14px;
+  font-size: 14px;
+  font-weight: 600;
+}
+
+td {
+  padding: 14px;
+  border-bottom: 1px solid #eef2f7;
+  font-size: 14px;
+  color: #333;
+}
+
+/* Zebra effect */
+tbody tr:nth-child(even) {
+  background: #f9fbff;
+}
+
+tbody tr:hover {
+  background: #eef4ff;
+}
+
+/* ===== Messages ===== */
+.info-message {
+  background: #fff8e1;
+  color: #7a5a00;
+  padding: 14px;
+  border-radius: 10px;
+  margin-bottom: 20px;
+}
+
+.error-message {
+  background: #fdecea;
+  color: #b42318;
+  padding: 14px;
+  border-radius: 10px;
+  margin-bottom: 20px;
+}

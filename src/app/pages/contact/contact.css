@@ -1,0 +1,137 @@
+.page-banner {
+  background: linear-gradient(135deg, #2f4a9a, #1f3475);
+  color: #ffffff;
+  padding: 52px 0;
+}
+
+.container {
+  width: min(1180px, 94%);
+  margin: 0 auto;
+}
+
+.banner-inner {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 24px;
+  flex-wrap: wrap;
+}
+
+.section-tag {
+  display: inline-block;
+  background: rgba(255, 255, 255, 0.14);
+  color: #ffffff;
+  padding: 8px 14px;
+  border-radius: 999px;
+  font-size: 13px;
+  font-weight: 700;
+  margin-bottom: 14px;
+}
+
+.page-banner h2 {
+  margin: 0 0 10px;
+  font-size: 40px;
+  line-height: 1.2;
+}
+
+.page-banner p {
+  margin: 0;
+  color: rgba(255, 255, 255, 0.88);
+  font-size: 16px;
+  line-height: 1.7;
+}
+
+.mini-panchashil {
+  display: flex;
+  width: 160px;
+  height: 12px;
+  border-radius: 999px;
+  overflow: hidden;
+  box-shadow: 0 0 0 1px rgba(255, 255, 255, 0.2);
+}
+
+.mini-panchashil span {
+  flex: 1;
+}
+
+.blue {
+  background: #1e40ff;
+}
+
+.yellow {
+  background: #ffd400;
+}
+
+.red {
+  background: #e53935;
+}
+
+.white {
+  background: #ffffff;
+}
+
+.orange {
+  background: #f59e0b;
+}
+
+.section {
+  padding: 48px 0 70px;
+}
+
+.contact-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+  gap: 24px;
+}
+
+.contact-card {
+  background: #ffffff;
+  border-radius: 20px;
+  padding: 28px;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.08);
+  border: 1px solid #e8eef8;
+}
+
+.contact-card h3 {
+  margin: 0 0 18px;
+  font-size: 26px;
+  color: #17233a;
+}
+
+.info-list p,
+.card-text {
+  margin: 0 0 14px;
+  line-height: 1.8;
+  color: #44546c;
+  font-size: 16px;
+}
+
+.wa-btn {
+  display: inline-block;
+  margin-top: 10px;
+  padding: 13px 18px;
+  background: #1fa855;
+  color: white;
+  text-decoration: none;
+  border-radius: 10px;
+  font-weight: 700;
+  transition: background 0.2s ease;
+}
+
+.wa-btn:hover {
+  background: #188344;
+}
+
+@media (max-width: 700px) {
+  .page-banner {
+    padding: 42px 0;
+  }
+
+  .page-banner h2 {
+    font-size: 32px;
+  }
+
+  .contact-card {
+    padding: 22px;
+  }
+}

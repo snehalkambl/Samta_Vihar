@@ -1,0 +1,180 @@
+:host {
+  display: block;
+  background: #f5f7fb;
+  min-height: 100vh;
+}
+
+.container {
+  max-width: 1180px;
+  margin: 0 auto;
+  padding-left: 20px;
+  padding-right: 20px;
+}
+
+.section {
+  padding-top: 36px;
+  padding-bottom: 60px;
+}
+
+.page-banner {
+  background: linear-gradient(135deg, #1f3c88, #3156b3);
+  color: white;
+  padding: 42px 0;
+}
+
+.section-tag {
+  display: inline-block;
+  background: rgba(255, 255, 255, 0.18);
+  padding: 7px 14px;
+  border-radius: 999px;
+  font-weight: 700;
+  margin-bottom: 12px;
+}
+
+.page-banner h2 {
+  margin: 0 0 10px;
+  font-size: 34px;
+  font-weight: 800;
+}
+
+.page-banner p {
+  margin: 0;
+  font-size: 18px;
+}
+
+.top-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 18px;
+  margin-bottom: 24px;
+}
+
+.top-row h3 {
+  margin: 0 0 6px;
+  font-size: 28px;
+  color: #111827;
+}
+
+.top-row p {
+  margin: 0;
+  color: #6b7280;
+}
+
+.total-card {
+  background: white;
+  padding: 18px 24px;
+  border-radius: 16px;
+  box-shadow: 0 10px 28px rgba(15, 23, 42, 0.1);
+  min-width: 180px;
+  text-align: right;
+}
+
+.total-card span {
+  display: block;
+  color: #6b7280;
+  font-weight: 700;
+  margin-bottom: 6px;
+}
+
+.total-card strong {
+  color: #dc2626;
+  font-size: 26px;
+}
+
+.info-message,
+.error-message {
+  padding: 16px 18px;
+  border-radius: 12px;
+  margin-bottom: 20px;
+  font-weight: 700;
+}
+
+.info-message {
+  background: #eaf1ff;
+  color: #1f3c88;
+}
+
+.error-message {
+  background: #fee2e2;
+  color: #b42318;
+}
+
+.table-card {
+  background: white;
+  border-radius: 18px;
+  box-shadow: 0 12px 32px rgba(15, 23, 42, 0.12);
+  overflow-x: auto;
+  border: 1px solid #e5e7eb;
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+  min-width: 820px;
+}
+
+thead {
+  background: #1f3c88;
+  color: white;
+}
+
+th {
+  text-align: left;
+  padding: 16px;
+  font-size: 15px;
+}
+
+td {
+  padding: 16px;
+  border-bottom: 1px solid #e5e7eb;
+  color: #1f2937;
+}
+
+tbody tr:hover {
+  background: #f8fafc;
+}
+
+td strong {
+  color: #111827;
+}
+
+.badge {
+  background: #fee2e2;
+  color: #991b1b;
+  padding: 6px 10px;
+  border-radius: 999px;
+  font-weight: 800;
+  font-size: 13px;
+}
+
+.amount {
+  color: #dc2626;
+  font-weight: 900;
+  font-size: 17px;
+}
+
+.back-row {
+  margin-top: 24px;
+  display: flex;
+  gap: 12px;
+  flex-wrap: wrap;
+}
+
+.back-btn,
+.add-btn {
+  display: inline-block;
+  color: white;
+  padding: 12px 18px;
+  border-radius: 12px;
+  text-decoration: none;
+  font-weight: 800;
+}
+
+.back-btn {
+  background: #3156b3;
+}
+
+.add-btn {
+  background: #dc2626;
+}
