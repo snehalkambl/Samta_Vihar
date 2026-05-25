@@ -1,0 +1,84 @@
+<section class="poster-page">
+  <div class="container">
+
+    <div class="page-header">
+      <div>
+        <span class="tag">
+          {{ 'poster.tag' | translate }}
+        </span>
+
+        <h2>
+          {{ 'poster.title' | translate }}
+        </h2>
+
+        <p>
+          {{ 'poster.subtitle' | translate }}
+        </p>
+      </div>
+
+      <a routerLink="/events" class="back-btn">
+        ← {{ 'poster.backBtn' | translate }}
+      </a>
+    </div>
+
+    <div *ngIf="loading()" class="info-message">
+      {{ 'poster.loading' | translate }}
+    </div>
+
+    <div *ngIf="errorMessage()" class="error-message">
+      {{ errorMessage() }}
+    </div>
+
+    <div class="poster-layout" *ngIf="posterUrl()">
+
+      <div class="poster-card">
+        <img [src]="posterUrl()" alt="Event Poster" />
+      </div>
+
+      <div class="action-card">
+        <h3>
+          {{ 'poster.howToTitle' | translate }}
+        </h3>
+
+        <ol>
+          <li>
+            {{ 'poster.step1' | translate }}
+          </li>
+
+          <li>
+            {{ 'poster.step2' | translate }}
+          </li>
+
+          <li>
+            {{ 'poster.step3' | translate }}
+          </li>
+
+          <li>
+            {{ 'poster.step4' | translate }}
+          </li>
+
+          <li>
+            {{ 'poster.step5' | translate }}
+          </li>
+        </ol>
+
+        <button
+          type="button"
+          class="download-btn"
+          (click)="downloadPoster()"
+        >
+          ⬇ {{ 'poster.downloadBtn' | translate }}
+        </button>
+
+        <button
+          type="button"
+          class="whatsapp-btn"
+          (click)="shareOnWhatsApp()"
+        >
+          {{ 'poster.whatsappBtn' | translate }}
+        </button>
+      </div>
+
+    </div>
+  </div>
+</section>

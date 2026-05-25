@@ -10,7 +10,7 @@ export class PaymentService {
   private http = inject(HttpClient);
   private apiUrl = 'http://localhost:8080/api/payments';
 
-  createPayment(payment: Payment): Observable<Payment> {
+  createPayment(payment: Partial<Payment>): Observable<Payment> {
     return this.http.post<Payment>(this.apiUrl, payment);
   }
 
@@ -32,5 +32,9 @@ export class PaymentService {
 
   getPaymentsByType(paymentType: string): Observable<Payment[]> {
     return this.http.get<Payment[]>(`${this.apiUrl}/type/${paymentType}`);
+  }
+
+  deletePayment(id: number): Observable<void> {
+    return this.http.delete<void>(`${this.apiUrl}/${id}`);
   }
 }

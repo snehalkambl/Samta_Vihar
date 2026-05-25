@@ -3,11 +3,12 @@ import { Component, inject, signal } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { Router } from '@angular/router';
 import { MemberService } from '../../services/member.service';
+import { TranslatePipe } from '../../pipes/translate-pipe';
 
 @Component({
   selector: 'app-membership',
   standalone: true,
-  imports: [CommonModule, FormsModule],
+  imports: [CommonModule, FormsModule, TranslatePipe],
   templateUrl: './membership.html',
   styleUrl: './membership.css'
 })
@@ -42,7 +43,11 @@ export class MembershipComponent {
       return;
     }
 
-    if (this.member.paymentStatus === 'PAID' && this.member.paymentMode === 'ONLINE' && !this.member.transactionId.trim()) {
+    if (
+      this.member.paymentStatus === 'PAID' &&
+      this.member.paymentMode === 'ONLINE' &&
+      !this.member.transactionId.trim()
+    ) {
       this.errorMessage.set('ऑनलाइन पेमेंटसाठी Transaction ID भरा.');
       return;
     }

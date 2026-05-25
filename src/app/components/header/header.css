@@ -15,92 +15,108 @@
   position: sticky;
   top: 0;
   z-index: 1000;
-
   background: #ffffff;
-
   box-shadow: 0 3px 14px rgba(0, 0, 0, 0.12);
 }
 
 /* ===== TOP BAR ===== */
 .top-bar {
   background: #f4f6f9;
-  padding: 6px 0;
+  padding: 7px 0;
 }
 
 .top-inner {
   display: flex;
   justify-content: space-between;
   align-items: center;
+  gap: 24px;
 }
 
-/* ===== LOGO ===== */
-.logo {
+/* ===== BRAND ===== */
+.brand-section {
   display: flex;
   align-items: center;
   gap: 14px;
 }
 
-.logo img {
-  width: 70px;
-  height: 70px;
-
+.brand-logo {
+  width: 68px;
+  height: 68px;
   object-fit: contain;
-
-  background: white;
-
+  background: #ffffff;
   padding: 5px;
   border-radius: 14px;
-
-  box-shadow: 0 3px 12px rgba(0,0,0,0.10);
+  box-shadow: 0 3px 12px rgba(0, 0, 0, 0.12);
 }
 
-.logo span {
-  font-size: 28px;
-  font-weight: 800;
+.brand-title-wrap {
+  display: inline-flex;
+  flex-direction: column;
+  gap: 8px;
+  width: fit-content;
+}
 
+.brand-title-wrap h1 {
+  margin: 0;
+  font-size: 30px;
+  font-weight: 900;
   color: #2f4a9a;
-
-  line-height: 1.1;
+  line-height: 1.05;
+  letter-spacing: 0.2px;
 }
+
+/* ===== PANCHASHIL FLAG ===== */
+.panchashil-flag {
+  display: flex;
+  width: 100%;
+  height: 9px;
+  border-radius: 999px;
+  overflow: hidden;
+  box-shadow: 0 2px 7px rgba(0, 0, 0, 0.18);
+}
+
+.panchashil-flag span {
+  flex: 1;
+}
+
+.blue { background: #1e40ff; }
+.yellow { background: #ffd400; }
+.red { background: #e53935; }
+.white { background: #ffffff; }
+.orange { background: #f59e0b; }
 
 /* ===== DEVELOPED BY ===== */
 .developer-text {
   display: flex;
   flex-direction: column;
   align-items: flex-end;
-
-  line-height: 1.3;
-
-  font-size: 15px;
-  font-weight: 600;
-
+  line-height: 1.2;
   color: #6b7280;
+}
+
+.developer-text small {
+  font-size: 14px;
+  font-weight: 800;
 }
 
 .developer-text span {
   font-size: 22px;
-  font-weight: 800;
-
+  font-weight: 900;
   color: #2f4a9a;
-
-  letter-spacing: 0.5px;
+  letter-spacing: 0.6px;
 }
 
 /* ===== NAVBAR ===== */
 .nav-bar {
-  background: linear-gradient(
-    135deg,
-    #2f4a9a,
-    #304ea8
-  );
+  background: linear-gradient(135deg, #2f4a9a, #304ea8);
 }
 
 .nav-inner {
   display: flex;
   justify-content: space-between;
   align-items: center;
-
   padding: 12px 0;
+  gap: 20px;
 }
 
 /* ===== NAV LINKS ===== */
@@ -108,38 +124,28 @@ nav {
   display: flex;
   align-items: center;
   gap: 30px;
-
   flex-wrap: wrap;
 }
 
 nav a {
   position: relative;
-
   color: #ffffff;
   text-decoration: none;
-
   font-size: 17px;
-  font-weight: 700;
-
-  transition: 0.3s ease;
+  font-weight: 800;
+  transition: 0.25s ease;
 }
 
-/* underline hover */
 nav a::after {
   content: "";
-
   position: absolute;
   left: 0;
   bottom: -7px;
-
   width: 0;
   height: 3px;
-
   background: #ffd54f;
-
   border-radius: 999px;
-
-  transition: 0.3s ease;
+  transition: 0.25s ease;
 }
 
 nav a:hover {
@@ -155,25 +161,21 @@ nav a:hover::after {
   display: flex;
   align-items: center;
   gap: 12px;
+  flex-wrap: wrap;
 }
 
 /* ===== BUTTONS ===== */
 .login-btn,
 .admin-btn,
-.logout-btn {
+.logout-btn,
+.language-btn {
   padding: 9px 16px;
-
   border-radius: 10px;
-
-  font-weight: 700;
+  font-weight: 800;
   font-size: 15px;
-
   border: none;
-
   cursor: pointer;
-
   text-decoration: none;
-
   transition: 0.25s ease;
 }
 
@@ -197,9 +199,19 @@ nav a:hover::after {
   background: #dc2626;
 }
 
+/* ===== LANGUAGE BUTTON ===== */
+.language-btn {
+  background: transparent;
+  color: #ffffff;
+  border: 2px solid #ffffff;
+}
+
+.language-btn:hover {
+  background: rgba(255, 255, 255, 0.18);
+}
+
 /* ===== MOBILE ===== */
 @media (max-width: 992px) {
-
   .top-inner,
   .nav-inner {
     flex-direction: column;
@@ -207,17 +219,17 @@ nav a:hover::after {
     gap: 14px;
   }
 
-  nav {
-    gap: 18px;
-  }
-
-  .logo img {
+  .brand-logo {
     width: 58px;
     height: 58px;
   }
 
-  .logo span {
+  .brand-title-wrap h1 {
     font-size: 24px;
+  }
+
+  .panchashil-flag {
+    height: 8px;
   }
 
   .developer-text {
@@ -228,29 +240,40 @@ nav a:hover::after {
     font-size: 18px;
   }
 
+  nav {
+    gap: 18px;
+  }
+
   nav a {
     font-size: 16px;
   }
-
 }
 
 /* ===== SMALL MOBILE ===== */
 @media (max-width: 600px) {
-
-  .logo {
+  .brand-section {
     gap: 10px;
   }
 
-  .logo span {
-    font-size: 20px;
+  .brand-logo {
+    width: 52px;
+    height: 52px;
   }
 
-  .developer-text {
+  .brand-title-wrap h1 {
+    font-size: 21px;
+  }
+
+  .panchashil-flag {
+    height: 7px;
+  }
+
+  .developer-text small {
     font-size: 12px;
   }
 
   .developer-text span {
-    font-size: 16px;
+    font-size: 15px;
   }
 
   nav {
@@ -263,9 +286,9 @@ nav a:hover::after {
 
   .login-btn,
   .admin-btn,
-  .logout-btn {
+  .logout-btn,
+  .language-btn {
     padding: 8px 14px;
     font-size: 13px;
   }
-
 }

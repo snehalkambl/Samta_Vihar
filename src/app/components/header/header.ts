@@ -2,6 +2,9 @@ import { CommonModule, isPlatformBrowser } from '@angular/common';
 import { Component, inject, PLATFORM_ID } from '@angular/core';
 import { Router, RouterModule } from '@angular/router';
 import { AuthService } from '../../services/auth.service';
+import { TranslationService } from '../../services/translation.service';
+
+
 
 @Component({
   selector: 'app-header',
@@ -15,7 +18,17 @@ export class HeaderComponent {
   private router = inject(Router);
   private platformId = inject(PLATFORM_ID);
 
+  translation = inject(TranslationService);
+
   readonly browserMode = isPlatformBrowser(this.platformId);
+
+  t(key: string): string {
+    return this.translation.translate(key);
+  }
+
+  toggleLanguage(): void {
+    this.translation.toggleLanguage();
+  }
 
   isLoggedIn(): boolean {
     if (!this.browserMode) return false;

@@ -6,11 +6,12 @@ import { MemberService } from '../../services/member.service';
 import { PaymentService } from '../../services/payment.service';
 import { IncomeService } from '../../services/income.service';
 import { ExpenseService } from '../../services/expense.service';
+import { TranslatePipe } from '../../pipes/translate-pipe';
 
 @Component({
   selector: 'app-admin-dashboard',
   standalone: true,
-  imports: [CommonModule, RouterModule],
+  imports: [CommonModule, RouterModule, TranslatePipe],
   templateUrl: './admin-dashboard.html',
   styleUrl: './admin-dashboard.css'
 })
@@ -59,10 +60,10 @@ export class AdminDashboardComponent {
   recentEvents = computed(() => this.events().slice(0, 5));
 
   quickActions = [
-    { title: 'कार्यक्रम तयार करा', route: '/admin/events/create' },
-    { title: 'उत्पन्न जोडा', route: '/admin/income/create' },
-    { title: 'खर्च जोडा', route: '/admin/expenses/create' },
-    { title: 'सदस्य यादी', route: '/member-list' }
+    { titleKey: 'admin.quickCreateEvent', route: '/admin/events/create' },
+    { titleKey: 'admin.quickAddIncome', route: '/admin/income/create' },
+    { titleKey: 'admin.quickAddExpense', route: '/admin/expenses/create' },
+    { titleKey: 'admin.quickMemberList', route: '/member-list' }
   ];
 
   constructor() {

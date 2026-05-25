@@ -5,11 +5,12 @@ import * as ExcelJS from 'exceljs';
 import { saveAs } from 'file-saver';
 import { MemberService } from '../../services/member.service';
 import { Member } from '../../models/member.model';
+import { TranslatePipe } from '../../pipes/translate-pipe';
 
 @Component({
   selector: 'app-member-list',
   standalone: true,
-  imports: [CommonModule, RouterModule],
+  imports: [CommonModule, RouterModule, TranslatePipe],
   templateUrl: './member-list.html',
   styleUrl: './member-list.css'
 })
@@ -45,7 +46,7 @@ export class MemberListComponent {
     const workbook = new ExcelJS.Workbook();
     const worksheet = workbook.addWorksheet('Members');
 
-    worksheet.mergeCells('A1:F1');
+    worksheet.mergeCells('A1:G1');
     const title = worksheet.getCell('A1');
     title.value = 'समता बुद्धविहार, ममतानगर - सदस्य यादी';
     title.font = { size: 16, bold: true, color: { argb: 'FFFFFFFF' } };

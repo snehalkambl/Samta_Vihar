@@ -22,8 +22,8 @@ export class EventService {
     return this.http.post<Event>(this.apiUrl, formData);
   }
 
-  updateEvent(id: number, event: Event): Observable<Event> {
-    return this.http.put<Event>(`${this.apiUrl}/${id}`, event);
+  updateEvent(id: number, formData: FormData): Observable<Event> {
+    return this.http.put<Event>(`${this.apiUrl}/${id}`, formData);
   }
 
   addGalleryImages(eventId: number, formData: FormData): Observable<Event> {
@@ -31,10 +31,23 @@ export class EventService {
   }
 
   deleteGalleryImage(imageId: number): Observable<string> {
-    return this.http.delete(`${this.apiUrl}/gallery/${imageId}`, { responseType: 'text' });
+    return this.http.delete(`${this.apiUrl}/gallery/${imageId}`, {
+      responseType: 'text'
+    });
   }
 
-  deleteEvent(id: number) {
-  return this.http.delete<void>(`${this.apiUrl}/${id}`);
+  deleteEvent(id: number): Observable<void> {
+    return this.http.delete<void>(`${this.apiUrl}/${id}`);
+  }
+
+  getWhatsappMessage(eventId: number): Observable<{ message: string }> {
+    return this.http.get<{ message: string }>(
+      `${this.apiUrl}/${eventId}/whatsapp-message`
+    );
+  }
+ getEventPoster(eventId: number) {
+  return this.http.get(`${this.apiUrl}/${eventId}/poster`, {
+    responseType: 'blob'
+  });
 }
 }

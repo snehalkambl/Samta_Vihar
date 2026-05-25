@@ -1,9 +1,9 @@
 <section class="page-banner">
   <div class="container banner-inner">
     <div>
-      <span class="section-tag">Admin Panel</span>
-      <h2>Admin Dashboard</h2>
-      <p>विहारातील सर्व नोंदी, आर्थिक सारांश आणि व्यवस्थापन येथे पाहा.</p>
+      <span class="section-tag">{{ 'admin.bannerTag' | translate }}</span>
+      <h2>{{ 'admin.dashboardTitle' | translate }}</h2>
+      <p>{{ 'admin.dashboardSubtitle' | translate }}</p>
     </div>
 
     <div class="mini-panchashil">
@@ -20,52 +20,52 @@
 
   <div class="summary-grid">
     <div class="summary-card income">
-      <span>एकूण उत्पन्न</span>
+      <span>{{ 'admin.totalIncome' | translate }}</span>
       <h3>₹{{ totalIncome() }}</h3>
     </div>
 
     <div class="summary-card payments">
-      <span>एकूण पेमेंट रक्कम</span>
+      <span>{{ 'admin.totalPaymentAmount' | translate }}</span>
       <h3>₹{{ totalPaymentAmount() }}</h3>
     </div>
 
     <div class="summary-card payments">
-      <span>कार्यक्रम पेमेंट</span>
+      <span>{{ 'admin.eventPayment' | translate }}</span>
       <h3>₹{{ totalEventPaymentAmount() }}</h3>
     </div>
 
     <div class="summary-card income">
-      <span>धम्म दान</span>
+      <span>{{ 'admin.dhammaDonation' | translate }}</span>
       <h3>₹{{ totalDonationAmount() }}</h3>
     </div>
 
     <div class="summary-card expense">
-      <span>एकूण खर्च</span>
+      <span>{{ 'admin.totalExpense' | translate }}</span>
       <h3>₹{{ totalExpense() }}</h3>
     </div>
 
     <div class="summary-card balance">
-      <span>शिल्लक</span>
+      <span>{{ 'admin.balance' | translate }}</span>
       <h3>₹{{ balance() }}</h3>
     </div>
 
     <div class="summary-card members">
-      <span>एकूण सदस्य</span>
+      <span>{{ 'admin.totalMembers' | translate }}</span>
       <h3>{{ members().length }}</h3>
     </div>
 
     <div class="summary-card events">
-      <span>एकूण कार्यक्रम</span>
+      <span>{{ 'admin.totalEvents' | translate }}</span>
       <h3>{{ events().length }}</h3>
     </div>
   </div>
 
   <div class="quick-actions-card">
-    <h3>Quick Actions</h3>
+    <h3>{{ 'admin.quickActions' | translate }}</h3>
 
     <div class="quick-actions">
       <a *ngFor="let action of quickActions" [routerLink]="action.route" class="quick-btn">
-        {{ action.title }}
+        {{ action.titleKey | translate }}
       </a>
     </div>
   </div>
@@ -73,49 +73,49 @@
   <div class="dashboard-grid">
 
     <div class="dashboard-card">
-      <h3>पेमेंट नोंदी</h3>
-      <p>कार्यक्रम, सदस्य शुल्क आणि धम्म दान पेमेंट तपशील पहा.</p>
-      <a routerLink="/admin/payments" class="card-btn">पेमेंट पहा</a>
+      <h3>{{ 'admin.paymentRecords' | translate }}</h3>
+      <p>{{ 'admin.paymentRecordsText' | translate }}</p>
+      <a routerLink="/admin/payments" class="card-btn">{{ 'admin.viewPayments' | translate }}</a>
     </div>
 
     <div class="dashboard-card">
-      <h3>उत्पन्न नोंदी</h3>
-      <p>विहारातील सर्व उत्पन्न नोंदी आणि एकूण रक्कम पहा.</p>
-      <a routerLink="/admin/income" class="card-btn">उत्पन्न पहा</a>
+      <h3>{{ 'admin.incomeRecords' | translate }}</h3>
+      <p>{{ 'admin.incomeRecordsText' | translate }}</p>
+      <a routerLink="/admin/income" class="card-btn">{{ 'admin.viewIncome' | translate }}</a>
     </div>
 
     <div class="dashboard-card">
-      <h3>खर्च नोंदी</h3>
-      <p>विहारातील सर्व खर्च नोंदी आणि एकूण खर्च पहा.</p>
-      <a routerLink="/admin/expenses" class="card-btn">खर्च पहा</a>
+      <h3>{{ 'admin.expenseRecords' | translate }}</h3>
+      <p>{{ 'admin.expenseRecordsText' | translate }}</p>
+      <a routerLink="/admin/expenses" class="card-btn">{{ 'admin.viewExpenses' | translate }}</a>
     </div>
 
     <div class="dashboard-card">
-      <h3>आर्थिक सारांश</h3>
-      <p>एकूण उत्पन्न, खर्च आणि शिल्लक रक्कम पहा.</p>
-      <a routerLink="/admin/finance-summary" class="card-btn">सारांश पहा</a>
+      <h3>{{ 'admin.financeSummary' | translate }}</h3>
+      <p>{{ 'admin.financeSummaryText' | translate }}</p>
+      <a routerLink="/admin/finance-summary" class="card-btn">{{ 'admin.viewSummary' | translate }}</a>
     </div>
 
     <div class="dashboard-card">
-      <h3>सदस्य यादी</h3>
-      <p>नोंदणीकृत सदस्यांची यादी पहा आणि Excel डाउनलोड करा.</p>
-      <a routerLink="/member-list" class="card-btn">सदस्य पहा</a>
+      <h3>{{ 'admin.memberList' | translate }}</h3>
+      <p>{{ 'admin.memberListText' | translate }}</p>
+      <a routerLink="/member-list" class="card-btn">{{ 'admin.viewMembers' | translate }}</a>
     </div>
 
     <div class="dashboard-card">
-      <h3>कार्यक्रम</h3>
-      <p>कार्यक्रम तयार करा आणि उपलब्ध कार्यक्रम व्यवस्थापित करा.</p>
-      <a routerLink="/events" class="card-btn">कार्यक्रम पहा</a>
+      <h3>{{ 'admin.events' | translate }}</h3>
+      <p>{{ 'admin.eventsText' | translate }}</p>
+      <a routerLink="/events" class="card-btn">{{ 'admin.viewEvents' | translate }}</a>
     </div>
 
   </div>
 
   <div class="recent-grid">
     <div class="recent-card">
-      <h3>Recent Payments</h3>
+      <h3>{{ 'admin.recentPayments' | translate }}</h3>
 
       <div *ngIf="recentPayments().length === 0" class="empty-text">
-        कोणतीही पेमेंट नोंद नाही.
+        {{ 'admin.noPayments' | translate }}
       </div>
 
       <div class="recent-row" *ngFor="let payment of recentPayments()">
@@ -128,10 +128,10 @@
     </div>
 
     <div class="recent-card">
-      <h3>Recent Events</h3>
+      <h3>{{ 'admin.recentEvents' | translate }}</h3>
 
       <div *ngIf="recentEvents().length === 0" class="empty-text">
-        कोणताही कार्यक्रम नाही.
+        {{ 'admin.noEvents' | translate }}
       </div>
 
       <div class="recent-row" *ngFor="let event of recentEvents()">
@@ -139,7 +139,7 @@
           <strong>{{ event.title }}</strong>
           <p>{{ event.eventDate }} - {{ event.eventTime }}</p>
         </div>
-        <span>{{ event.isPaid ? 'सशुल्क' : 'विनामूल्य' }}</span>
+        <span>{{ event.isPaid ? ('admin.paid' | translate) : ('admin.free' | translate) }}</span>
       </div>
     </div>
   </div>

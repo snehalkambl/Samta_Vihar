@@ -2,11 +2,12 @@ import { CommonModule } from '@angular/common';
 import { Component, inject, signal, computed } from '@angular/core';
 import { RouterLink } from '@angular/router';
 import { ExpenseService } from '../../services/expense.service';
+import { TranslatePipe } from '../../pipes/translate-pipe';
 
 @Component({
   selector: 'app-expense-list',
   standalone: true,
-  imports: [CommonModule, RouterLink],
+  imports: [CommonModule, RouterLink, TranslatePipe],
   templateUrl: './expense-list.html',
   styleUrl: './expense-list.css',
 })
@@ -18,7 +19,10 @@ export class ExpenseList {
   errorMessage = signal('');
 
   totalExpense = computed(() =>
-    this.expenses().reduce((sum, item) => sum + Number(item.amount || 0), 0)
+    this.expenses().reduce(
+      (sum, item) => sum + Number(item.amount || 0),
+      0
+    )
   );
 
   constructor() {

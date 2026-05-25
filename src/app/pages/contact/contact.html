@@ -1,9 +1,9 @@
 <section class="page-banner">
   <div class="container banner-inner">
     <div>
-      <span class="section-tag">संपर्क</span>
-      <h2>संपर्क</h2>
-      <p>समता बुद्धविहार, ममतानगर यांच्याशी संपर्क साधण्यासाठी खालील माहिती वापरा.</p>
+      <span class="section-tag">{{ 'contact.bannerTag' | translate }}</span>
+      <h2>{{ 'contact.title' | translate }}</h2>
+      <p>{{ 'contact.subtitle' | translate }}</p>
     </div>
 
     <div class="mini-panchashil" aria-hidden="true">
@@ -17,24 +17,57 @@
 </section>
 
 <section class="container section contact-grid">
+
   <div class="contact-card">
-    <h3>संपर्क माहिती</h3>
+    <div class="card-icon">📍</div>
+    <h3>{{ 'contact.infoTitle' | translate }}</h3>
 
     <div class="info-list">
-      <p><strong>पत्ता:</strong> समता बुद्धविहार, ममतानगर, पुणे</p>
-      <p><strong>मोबाईल:</strong> +91 98765 43210</p>
-      <p><strong>ई-मेल:</strong> samatabuddhavihar@example.com</p>
+      <p>
+        <strong>{{ 'contact.addressLabel' | translate }}:</strong>
+        {{ 'contact.address' | translate }}
+      </p>
+
+      <p>
+        <strong>{{ 'contact.mobileLabel' | translate }}:</strong>
+        +91 8551086490
+      </p>
+
+      <p>
+        <strong>{{ 'contact.emailLabel' | translate }}:</strong>
+        samatabuddhavihar@example.com
+      </p>
     </div>
   </div>
 
   <div class="contact-card">
-    <h3>WhatsApp संपर्क</h3>
+    <div class="card-icon whatsapp">💬</div>
+    <h3>{{ 'contact.adminWhatsappTitle' | translate }}</h3>
+
     <p class="card-text">
-      थेट WhatsApp वर संदेश पाठवण्यासाठी खालील बटण वापरा.
+      {{ 'contact.adminWhatsappText' | translate }}
     </p>
 
-    <a class="wa-btn" href="https://wa.me/919876543210" target="_blank">
-      WhatsApp वर संदेश पाठवा
-    </a>
+    <button type="button" class="wa-btn" (click)="openAdminWhatsapp()">
+      {{ 'contact.adminWhatsappBtn' | translate }}
+    </button>
   </div>
+
+  <!-- <div class="contact-card">
+    <div class="card-icon group">👥</div>
+    <h3>{{ 'contact.groupTitle' | translate }}</h3>
+
+    <p class="card-text">
+      {{ 'contact.groupText' | translate }}
+    </p>
+
+    <button type="button" class="group-btn" (click)="openGroupInvite()">
+      {{ 'contact.groupBtn' | translate }}
+    </button>
+
+    <p class="small-note">
+      {{ 'contact.groupNote' | translate }}
+    </p>
+  </div> -->
+
 </section>

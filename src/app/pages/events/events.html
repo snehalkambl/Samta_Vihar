@@ -1,9 +1,9 @@
 <section class="page-banner">
   <div class="container banner-inner">
     <div>
-      <span class="section-tag">विहार कार्यक्रम</span>
-      <h2>महत्त्वाचे कार्यक्रम</h2>
-      <p>धम्म, समाजसेवा आणि सांस्कृतिक उपक्रमांची माहिती येथे पहा.</p>
+      <span class="section-tag">{{ 'events.bannerTag' | translate }}</span>
+      <h2>{{ 'events.title' | translate }}</h2>
+      <p>{{ 'events.subtitle' | translate }}</p>
     </div>
 
     <div class="mini-panchashil" aria-hidden="true">
@@ -16,137 +16,157 @@
   </div>
 </section>
 
-<section class="container section">
-  <div class="header-row">
-    <div>
-      <h3>कार्यक्रम यादी</h3>
-      <p class="sub-text">उपलब्ध कार्यक्रमांची संपूर्ण माहिती</p>
-    </div>
-
-    <a *ngIf="isAdmin()" [routerLink]="['/admin/events/create']" class="create-btn">
-      ➕ कार्यक्रम तयार करा
-    </a>
-  </div>
-
-  <div *ngIf="loading()" class="info-message">
-    कार्यक्रम लोड होत आहेत...
-  </div>
-
-  <div *ngIf="errorMessage()" class="error-message">
-    {{ errorMessage() }}
-  </div>
-
-  <div *ngIf="!loading() && !errorMessage() && events().length === 0" class="info-message">
-    सध्या कोणतेही कार्यक्रम उपलब्ध नाहीत.
-  </div>
-
-  <div class="grid" *ngIf="!loading() && paginatedEvents().length > 0">
-    <div class="event-card" *ngFor="let event of paginatedEvents()">
-      <div class="image-wrap">
-        <img
-          [src]="event.coverImageUrl || '/images/event-placeholder.png'"
-          [alt]="event.title"
-          class="event-image"
-          (error)="setFallbackImage($any($event.target))"
-        />
+<section class="events-section">
+  <div class="container">
+    <div class="header-row">
+      <div>
+        <h3>{{ 'events.listTitle' | translate }}</h3>
+        <p class="sub-text">{{ 'events.listSubtitle' | translate }}</p>
       </div>
 
-      <div class="event-content">
-        <div class="event-top">
-          <h3>{{ event.title }}</h3>
+      <a *ngIf="isAdmin()" routerLink="/admin/events/create" class="create-btn">
+        ➕ {{ 'events.createEvent' | translate }}
+      </a>
+    </div>
 
-          <span class="type-badge" *ngIf="event.isPaid">सशुल्क</span>
-          <span class="type-badge free" *ngIf="!event.isPaid">विनामूल्य</span>
+    <div *ngIf="loading()" class="info-message">
+      {{ 'events.loading' | translate }}
+    </div>
+
+    <div *ngIf="errorMessage()" class="error-message">
+      {{ errorMessage() }}
+    </div>
+
+    <div *ngIf="!loading() && !errorMessage() && events().length === 0" class="empty-card">
+      <h4>{{ 'events.emptyTitle' | translate }}</h4>
+      <p>{{ 'events.emptyText' | translate }}</p>
+    </div>
+
+    <div class="grid" *ngIf="!loading() && paginatedEvents().length > 0">
+      <div class="event-card" *ngFor="let event of paginatedEvents()">
+        <div class="image-wrap">
+          <img
+            [src]="getEventImage(event)"
+            [alt]="eventTitle(event)"
+            class="event-image"
+            (error)="setFallbackImage($any($event.target))"
+          />
         </div>
 
-        <div class="meta-grid">
-          <p><strong>तारीख:</strong> {{ event.eventDate }}</p>
-          <p><strong>वेळ:</strong> {{ event.eventTime || '-' }}</p>
-          <p><strong>स्थळ:</strong> {{ event.location || '-' }}</p>
-        </div>
+        <div class="event-content">
+          <div class="event-top">
+            <h3>{{ eventTitle(event) }}</h3>
 
-        <p class="description" *ngIf="event.shortDescription || event.fullDescription">
-          {{ event.shortDescription || event.fullDescription }}
-        </p>
+            <span class="type-badge" *ngIf="event.isPaid">
+              {{ 'events.paid' | translate }}
+            </span>
 
-        <p class="amount" *ngIf="event.isPaid">
-          <strong>शुल्क:</strong> ₹{{ event.amount || 0 }}
-        </p>
+            <span class="type-badge free" *ngIf="!event.isPaid">
+              {{ 'events.free' | translate }}
+            </span>
+          </div>
 
-        <p class="amount" *ngIf="!event.isPaid">
-          <strong>प्रवेश:</strong> विनामूल्य
-        </p>
+          <div class="meta-grid">
+            <p>
+              <strong>{{ 'events.date' | translate }}:</strong>
+              {{ event.eventDate }}
+            </p>
 
-        <div class="action-row">
-          <a
-            [routerLink]="['/payment']"
-            [queryParams]="{
-              type: 'EVENT',
-              eventId: event.id,
-              amount: event.amount || 0
-            }"
-            class="pay-btn"
-          >
-            योगदान द्या
-          </a>
+            <p>
+              <strong>{{ 'events.time' | translate }}:</strong>
+              {{ event.eventTime || '-' }}
+            </p>
 
-          <a
-            *ngIf="isAdmin()"
-            [routerLink]="['/admin/events/edit', $any(event.id)]"
-            class="edit-btn"
-          >
-            ✏️ Edit
-          </a>
+            <p>
+              <strong>{{ 'events.location' | translate }}:</strong>
+              {{ eventLocation(event) || '-' }}
+            </p>
+          </div>
 
-          <button
-            *ngIf="isAdmin()"
-            type="button"
-            (click)="openDeleteModal($any(event.id))"
-            class="delete-btn"
-          >
-            🗑 Delete
-          </button>
+          <p class="description" *ngIf="eventDescription(event)">
+            {{ eventDescription(event) }}
+          </p>
+
+          <p class="amount" *ngIf="event.isPaid">
+            <strong>{{ 'events.fee' | translate }}:</strong> ₹{{ event.amount }}
+          </p>
+
+          <p class="amount" *ngIf="!event.isPaid">
+            <strong>{{ 'events.entry' | translate }}:</strong>
+            {{ 'events.free' | translate }}
+          </p>
+
+          <div class="action-row">
+            <a
+              [routerLink]="['/payment']"
+              [queryParams]="{
+                type: 'EVENT',
+                eventId: event.id,
+                amount: event.amount
+              }"
+              class="pay-btn"
+            >
+              {{ 'events.contribute' | translate }}
+            </a>
+
+            <a [routerLink]="['/events', event.id]" class="details-btn">
+              {{ 'events.moreInfo' | translate }}
+            </a>
+
+            <a
+              *ngIf="isAdmin()"
+              [routerLink]="['/poster-preview', event.id]"
+              class="whatsapp-btn"
+            >
+              WhatsApp Poster
+            </a>
+
+            <a
+              *ngIf="isAdmin()"
+              [routerLink]="['/admin/events/edit', event.id]"
+              class="edit-btn"
+            >
+              ✏️ Edit
+            </a>
+
+            <button
+              *ngIf="isAdmin()"
+              type="button"
+              (click)="deleteEvent(event.id)"
+              class="delete-btn"
+            >
+              🗑 Delete
+            </button>
+          </div>
         </div>
       </div>
     </div>
-  </div>
 
-  <div class="pagination" *ngIf="!loading() && totalPages() > 1">
-    <button class="page-btn" (click)="previousPage()" [disabled]="currentPage() === 1">
-      मागील
-    </button>
+    <div class="pagination" *ngIf="!loading() && totalPages() > 1">
+      <button
+        class="page-btn"
+        (click)="previousPage()"
+        [disabled]="currentPage() === 1"
+      >
+        {{ 'events.previous' | translate }}
+      </button>
 
-    <button
-      *ngFor="let page of pageNumbers()"
-      class="page-number"
-      [class.active]="currentPage() === page"
-      (click)="goToPage(page)"
-    >
-      {{ page }}
-    </button>
+      <button
+        *ngFor="let page of pageNumbers()"
+        class="page-number"
+        [class.active]="currentPage() === page"
+        (click)="goToPage(page)"
+      >
+        {{ page }}
+      </button>
 
-    <button class="page-btn" (click)="nextPage()" [disabled]="currentPage() === totalPages()">
-      पुढील
-    </button>
+      <button
+        class="page-btn"
+        (click)="nextPage()"
+        [disabled]="currentPage() === totalPages()"
+      >
+        {{ 'events.next' | translate }}
+      </button>
+    </div>
   </div>
 </section>
-
-<div class="modal-backdrop" *ngIf="showDeleteModal()">
-  <div class="delete-modal">
-    <div class="modal-icon">🗑</div>
-
-    <h3>कार्यक्रम delete करायचा आहे का?</h3>
-
-    <p>हा कार्यक्रम कायमचा delete होईल. तुम्हाला खात्री आहे का?</p>
-
-    <div class="modal-actions">
-      <button type="button" class="cancel-modal-btn" (click)="closeDeleteModal()">
-        Cancel
-      </button>
-
-      <button type="button" class="confirm-delete-btn" (click)="confirmDeleteEvent()">
-        Yes, Delete
-      </button>
-    </div>
-  </div>
-</div>

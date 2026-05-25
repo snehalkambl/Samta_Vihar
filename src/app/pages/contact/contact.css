@@ -54,25 +54,11 @@
   flex: 1;
 }
 
-.blue {
-  background: #1e40ff;
-}
-
-.yellow {
-  background: #ffd400;
-}
-
-.red {
-  background: #e53935;
-}
-
-.white {
-  background: #ffffff;
-}
-
-.orange {
-  background: #f59e0b;
-}
+.blue { background: #1e40ff; }
+.yellow { background: #ffd400; }
+.red { background: #e53935; }
+.white { background: #ffffff; }
+.orange { background: #f59e0b; }
 
 .section {
   padding: 48px 0 70px;
@@ -92,6 +78,26 @@
   border: 1px solid #e8eef8;
 }
 
+.card-icon {
+  width: 46px;
+  height: 46px;
+  border-radius: 14px;
+  background: #eaf1ff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 23px;
+  margin-bottom: 16px;
+}
+
+.card-icon.whatsapp {
+  background: #e8f8ef;
+}
+
+.card-icon.group {
+  background: #fff3d8;
+}
+
 .contact-card h3 {
   margin: 0 0 18px;
   font-size: 26px;
@@ -106,20 +112,41 @@
   font-size: 16px;
 }
 
-.wa-btn {
+.wa-btn,
+.group-btn {
   display: inline-block;
   margin-top: 10px;
   padding: 13px 18px;
-  background: #1fa855;
   color: white;
   text-decoration: none;
   border-radius: 10px;
-  font-weight: 700;
-  transition: background 0.2s ease;
+  font-weight: 800;
+  border: none;
+  cursor: pointer;
+  transition: 0.2s ease;
+}
+
+.wa-btn {
+  background: #1fa855;
 }
 
 .wa-btn:hover {
   background: #188344;
+}
+
+.group-btn {
+  background: #2f4a9a;
+}
+
+.group-btn:hover {
+  background: #1f3475;
+}
+
+.small-note {
+  margin: 14px 0 0;
+  font-size: 14px;
+  color: #6b7280;
+  line-height: 1.6;
 }
 
 @media (max-width: 700px) {

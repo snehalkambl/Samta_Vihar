@@ -1,9 +1,17 @@
 <section class="page-banner">
   <div class="container banner-inner">
     <div>
-      <span class="section-tag">पेमेंट पुष्टी</span>
-      <h2>पेमेंट यशस्वी</h2>
-      <p>आपले पेमेंट सुरक्षितरीत्या नोंदवले गेले आहे.</p>
+      <span class="section-tag">
+        {{ 'paymentSuccess.bannerTag' | translate }}
+      </span>
+
+      <h2>
+        {{ 'paymentSuccess.title' | translate }}
+      </h2>
+
+      <p>
+        {{ 'paymentSuccess.subtitle' | translate }}
+      </p>
     </div>
 
     <div class="mini-panchashil" aria-hidden="true">
@@ -20,32 +28,37 @@
   <div class="receipt-card" *ngIf="payment(); else noData">
     <div class="success-icon">✓</div>
 
-    <h3>आपले पेमेंट यशस्वीरीत्या नोंदवले गेले आहे</h3>
-    <p class="thank-you">धन्यवाद! आपला सहभाग आमच्यासाठी महत्त्वाचा आहे.</p>
+    <h3>
+      {{ 'paymentSuccess.successMessage' | translate }}
+    </h3>
+
+    <p class="thank-you">
+      {{ 'paymentSuccess.thankYou' | translate }}
+    </p>
 
     <div class="receipt-grid">
       <div class="row">
-        <span>नाव</span>
+        <span>{{ 'paymentSuccess.name' | translate }}</span>
         <strong>{{ payment()?.payerName }}</strong>
       </div>
 
       <div class="row">
-        <span>मोबाईल</span>
+        <span>{{ 'paymentSuccess.mobile' | translate }}</span>
         <strong>{{ payment()?.mobile }}</strong>
       </div>
 
       <div class="row">
-        <span>पेमेंट प्रकार</span>
+        <span>{{ 'paymentSuccess.paymentType' | translate }}</span>
         <strong>{{ payment()?.paymentType }}</strong>
       </div>
 
       <div class="row highlight-row">
-        <span>रक्कम</span>
+        <span>{{ 'paymentSuccess.amount' | translate }}</span>
         <strong>₹{{ payment()?.amount }}</strong>
       </div>
 
       <div class="row">
-        <span>पेमेंट मोड</span>
+        <span>{{ 'paymentSuccess.paymentMode' | translate }}</span>
         <strong>{{ payment()?.paymentMode }}</strong>
       </div>
 
@@ -55,7 +68,7 @@
       </div>
 
       <div class="row">
-        <span>स्थिती</span>
+        <span>{{ 'paymentSuccess.status' | translate }}</span>
         <strong class="status-success">{{ payment()?.status }}</strong>
       </div>
 
@@ -66,16 +79,29 @@
     </div>
 
     <div class="action-row">
-      <a routerLink="/events" class="btn secondary">कार्यक्रम पानावर जा</a>
-      <a routerLink="/" class="btn primary">मुख्यपृष्ठ</a>
+      <a routerLink="/events" class="btn secondary">
+        {{ 'paymentSuccess.eventsPage' | translate }}
+      </a>
+
+      <a routerLink="/" class="btn primary">
+        {{ 'paymentSuccess.home' | translate }}
+      </a>
     </div>
   </div>
 
   <ng-template #noData>
     <div class="no-data-card">
-      <h3>पेमेंट तपशील उपलब्ध नाहीत</h3>
-      <p>कृपया पेमेंट पानावरून पुन्हा प्रयत्न करा.</p>
-      <a routerLink="/payment" class="btn primary">पेमेंट पानावर जा</a>
+      <h3>
+        {{ 'paymentSuccess.noDataTitle' | translate }}
+      </h3>
+
+      <p>
+        {{ 'paymentSuccess.noDataText' | translate }}
+      </p>
+
+      <a routerLink="/payment" class="btn primary">
+        {{ 'paymentSuccess.paymentPage' | translate }}
+      </a>
     </div>
   </ng-template>
 </section>

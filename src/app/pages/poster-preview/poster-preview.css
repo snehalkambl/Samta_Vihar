@@ -1,0 +1,151 @@
+:host {
+  display: block;
+  background: #f5f7fc;
+  min-height: 100vh;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+.container {
+  width: min(1180px, 94%);
+  margin: 0 auto;
+}
+
+.poster-page {
+  padding: 50px 0 80px;
+}
+
+.page-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 24px;
+  margin-bottom: 30px;
+}
+
+.tag {
+  display: inline-block;
+  background: #e8efff;
+  color: #2f4a9a;
+  padding: 7px 14px;
+  border-radius: 999px;
+  font-weight: 800;
+  margin-bottom: 12px;
+}
+
+.page-header h2 {
+  margin: 0 0 8px;
+  font-size: 36px;
+  color: #17233a;
+}
+
+.page-header p {
+  margin: 0;
+  color: #5b6c86;
+  font-size: 17px;
+}
+
+.back-btn {
+  background: #2f4a9a;
+  color: white;
+  padding: 12px 18px;
+  border-radius: 12px;
+  text-decoration: none;
+  font-weight: 800;
+}
+
+.poster-layout {
+  display: grid;
+  grid-template-columns: 1fr 360px;
+  gap: 28px;
+  align-items: flex-start;
+}
+
+.poster-card {
+  background: #111827;
+  padding: 18px;
+  border-radius: 20px;
+  box-shadow: 0 14px 38px rgba(0, 0, 0, 0.18);
+  text-align: center;
+}
+
+.poster-card img {
+  max-width: 100%;
+  max-height: 80vh;
+  border-radius: 12px;
+  object-fit: contain;
+}
+
+.action-card {
+  background: white;
+  padding: 26px;
+  border-radius: 20px;
+  box-shadow: 0 12px 32px rgba(15, 23, 42, 0.12);
+  border: 1px solid #e5e7eb;
+}
+
+.action-card h3 {
+  margin: 0 0 16px;
+  color: #17233a;
+  font-size: 24px;
+}
+
+.action-card ol {
+  margin: 0 0 24px;
+  padding-left: 20px;
+  color: #33435b;
+  line-height: 1.8;
+}
+
+.download-btn,
+.whatsapp-btn {
+  width: 100%;
+  border: none;
+  padding: 13px 18px;
+  border-radius: 12px;
+  font-weight: 900;
+  cursor: pointer;
+  font-size: 16px;
+  margin-top: 12px;
+}
+
+.download-btn {
+  background: linear-gradient(135deg, #7c3aed, #5b21b6);
+  color: white;
+}
+
+.whatsapp-btn {
+  background: linear-gradient(135deg, #22c55e, #16a34a);
+  color: white;
+}
+
+.info-message,
+.error-message {
+  padding: 16px 18px;
+  border-radius: 12px;
+  font-weight: 800;
+  margin-bottom: 20px;
+}
+
+.info-message {
+  background: #eaf1ff;
+  color: #2f4a9a;
+}
+
+.error-message {
+  background: #fee2e2;
+  color: #b42318;
+}
+
+@media (max-width: 900px) {
+  .page-header {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .poster-layout {
+    grid-template-columns: 1fr;
+  }
+}

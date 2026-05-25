@@ -55,91 +55,90 @@ export const routes: Routes = [
   {
     path: 'admin/dashboard',
     loadComponent: () =>
-      import('./pages/admin-dashboard/admin-dashboard').then(
-        m => m.AdminDashboardComponent
-      ),
+      import('./pages/admin-dashboard/admin-dashboard').then(m => m.AdminDashboardComponent),
     canActivate: [adminGuard]
   },
 
   {
     path: 'admin/events/create',
     loadComponent: () =>
-      import('./pages/create-event/create-event').then(
-        m => m.CreateEventComponent
-      ),
+      import('./pages/create-event/create-event').then(m => m.CreateEventComponent),
     canActivate: [adminGuard]
   },
 
   {
     path: 'admin/events/edit/:id',
     loadComponent: () =>
-      import('./pages/create-event/create-event').then(
-        m => m.CreateEventComponent
-      ),
+      import('./pages/create-event/create-event').then(m => m.CreateEventComponent),
+    canActivate: [adminGuard]
+  },
+
+  {
+    path: 'poster-preview/:id',
+    loadComponent: () =>
+      import('./pages/poster-preview/poster-preview').then(m => m.PosterPreviewComponent),
     canActivate: [adminGuard]
   },
 
   {
     path: 'admin/income/create',
     loadComponent: () =>
-      import('./pages/create-income/create-income').then(
-        m => m.CreateIncomeComponent
-      ),
+      import('./pages/create-income/create-income').then(m => m.CreateIncomeComponent),
     canActivate: [adminGuard]
   },
 
   {
     path: 'admin/expenses/create',
     loadComponent: () =>
-      import('./pages/create-expense/create-expense').then(
-        m => m.CreateExpenseComponent
-      ),
+      import('./pages/create-expense/create-expense').then(m => m.CreateExpenseComponent),
     canActivate: [adminGuard]
   },
 
   {
     path: 'admin/finance-summary',
     loadComponent: () =>
-      import('./pages/finance-summary/finance-summary').then(
-        m => m.FinanceSummaryComponent
-      ),
+      import('./pages/finance-summary/finance-summary').then(m => m.FinanceSummaryComponent),
+    canActivate: [adminGuard]
+  },
+
+  {
+    path: 'admin/members',
+    loadComponent: () =>
+      import('./pages/member-list/member-list').then(m => m.MemberListComponent),
     canActivate: [adminGuard]
   },
 
   {
     path: 'member-list',
-    loadComponent: () =>
-      import('./pages/member-list/member-list').then(
-        m => m.MemberListComponent
-      ),
-    canActivate: [adminGuard]
+    redirectTo: 'admin/members'
   },
 
   {
     path: 'admin/payments',
     loadComponent: () =>
-      import('./pages/payment-list/payment-list').then(
-        m => m.PaymentList
-      ),
+      import('./pages/payment-list/payment-list').then(m => m.PaymentList),
     canActivate: [adminGuard]
   },
 
   {
     path: 'admin/income',
     loadComponent: () =>
-      import('./pages/income-list/income-list').then(
-        m => m.IncomeList
-      ),
+      import('./pages/income-list/income-list').then(m => m.IncomeList),
     canActivate: [adminGuard]
   },
 
   {
     path: 'admin/expenses',
     loadComponent: () =>
-      import('./pages/expense-list/expense-list').then(
-        m => m.ExpenseList
-      ),
+      import('./pages/expense-list/expense-list').then(m => m.ExpenseList),
     canActivate: [adminGuard]
+  },
+  {
+    path: 'forgot-password',
+    loadComponent: () =>
+      import('./pages/forgot-password/forgot-password').then(
+        m => m.ForgotPasswordComponent
+      )
   },
 
   {

@@ -1,9 +1,17 @@
 <section class="page-banner">
   <div class="container banner-inner">
     <div>
-      <span class="section-tag">सदस्य माहिती</span>
-      <h2>नोंदणीकृत सदस्य</h2>
-      <p>विहाराशी जोडलेल्या सर्व सदस्यांची यादी येथे पाहू शकता.</p>
+      <span class="section-tag">
+        {{ 'memberList.bannerTag' | translate }}
+      </span>
+
+      <h2>
+        {{ 'memberList.title' | translate }}
+      </h2>
+
+      <p>
+        {{ 'memberList.subtitle' | translate }}
+      </p>
     </div>
 
     <div class="mini-panchashil" aria-hidden="true">
@@ -19,18 +27,28 @@
 <section class="container section">
   <div class="top-row">
     <div class="summary-card">
-      <span class="summary-label">एकूण सदस्य</span>
+      <span class="summary-label">
+        {{ 'memberList.totalMembers' | translate }}
+      </span>
+
       <h3>{{ members().length }}</h3>
-      <p>नोंदणीकृत सदस्यांची संख्या</p>
+
+      <p>
+        {{ 'memberList.totalMembersText' | translate }}
+      </p>
     </div>
 
-    <button class="download-btn" (click)="downloadMembersExcel()" [disabled]="members().length === 0">
-      सदस्य Excel डाउनलोड
+    <button
+      class="download-btn"
+      (click)="downloadMembersExcel()"
+      [disabled]="members().length === 0"
+    >
+      {{ 'memberList.downloadExcel' | translate }}
     </button>
   </div>
 
   <div *ngIf="loading()" class="info-message">
-    सदस्यांची माहिती लोड होत आहे...
+    {{ 'memberList.loading' | translate }}
   </div>
 
   <div *ngIf="errorMessage()" class="error-message">
@@ -38,22 +56,23 @@
   </div>
 
   <div *ngIf="!loading() && members().length === 0" class="info-message">
-    कोणताही सदस्य उपलब्ध नाही.
+    {{ 'memberList.empty' | translate }}
   </div>
 
   <div class="table-wrapper" *ngIf="!loading() && members().length > 0">
     <table>
       <thead>
         <tr>
-          <th>क्रमांक</th>
-          <th>पूर्ण नाव</th>
-          <th>मोबाईल क्रमांक</th>
-          <th>पत्ता</th>
-          <th>पेमेंट स्थिती</th>
-          <th>पेमेंट मोड</th>
+          <th>{{ 'memberList.srNo' | translate }}</th>
+          <th>{{ 'memberList.fullName' | translate }}</th>
+          <th>{{ 'memberList.mobile' | translate }}</th>
+          <th>{{ 'memberList.address' | translate }}</th>
+          <th>{{ 'memberList.paymentStatus' | translate }}</th>
+          <th>{{ 'memberList.paymentMode' | translate }}</th>
           <th>Transaction ID</th>
         </tr>
       </thead>
+
       <tbody>
         <tr *ngFor="let member of members(); let i = index">
           <td>{{ i + 1 }}</td>

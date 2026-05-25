@@ -1,9 +1,9 @@
 <section class="page-banner">
   <div class="container banner-inner">
     <div>
-      <span class="section-tag">सुरक्षित पेमेंट</span>
-      <h2>पेमेंट करा</h2>
-      <p>कार्यक्रम, सदस्य शुल्क किंवा धम्म दानासाठी आपली पेमेंट नोंद येथे करा.</p>
+      <span class="section-tag">{{ 'payment.bannerTag' | translate }}</span>
+      <h2>{{ 'payment.title' | translate }}</h2>
+      <p>{{ 'payment.subtitle' | translate }}</p>
     </div>
 
     <div class="mini-panchashil" aria-hidden="true">
@@ -20,30 +20,39 @@
   <div class="payment-layout">
     <div class="payment-card">
       <div class="payment-type">
-        <h3 *ngIf="paymentType() === 'EVENT'">कार्यक्रमासाठी योगदान</h3>
-        <h3 *ngIf="paymentType() === 'MEMBERSHIP'">सदस्य शुल्क</h3>
-        <h3 *ngIf="paymentType() === 'DONATION'">धम्म दान</h3>
-        <p>कृपया खालील माहिती भरून पेमेंट नोंद पूर्ण करा.</p>
+        <h3 *ngIf="paymentType() === 'EVENT'">
+          {{ 'payment.eventContribution' | translate }}
+        </h3>
+
+        <h3 *ngIf="paymentType() === 'MEMBERSHIP'">
+          {{ 'payment.membershipFee' | translate }}
+        </h3>
+
+        <h3 *ngIf="paymentType() === 'DONATION'">
+          {{ 'payment.dhammaDonation' | translate }}
+        </h3>
+
+        <p>{{ 'payment.formInstruction' | translate }}</p>
       </div>
 
       <form (ngSubmit)="submitPayment()">
         <div class="form-group">
-          <label>नाव</label>
+          <label>{{ 'payment.name' | translate }}</label>
           <input type="text" [(ngModel)]="payerName" name="payerName" required />
         </div>
 
         <div class="form-group">
-          <label>मोबाईल नंबर</label>
+          <label>{{ 'payment.mobile' | translate }}</label>
           <input type="text" [(ngModel)]="mobile" name="mobile" required />
         </div>
 
         <div class="form-group">
-          <label>रक्कम</label>
+          <label>{{ 'payment.amount' | translate }}</label>
           <input type="number" [(ngModel)]="amount" name="amount" required />
         </div>
 
         <div class="form-group">
-          <label>पेमेंट मोड</label>
+          <label>{{ 'payment.paymentMode' | translate }}</label>
           <select [(ngModel)]="paymentMode" name="paymentMode">
             <option value="CASH">Cash</option>
             <option value="GPAY">GPay</option>
@@ -53,8 +62,8 @@
 
         <div *ngIf="paymentMode === 'GPAY' || paymentMode === 'UPI'" class="qr-box">
           <div class="qr-header">
-            <h4>QR स्कॅन करून पेमेंट करा</h4>
-            <p>पेमेंट पूर्ण झाल्यावर Transaction ID भरा.</p>
+            <h4>{{ 'payment.scanQr' | translate }}</h4>
+            <p>{{ 'payment.qrInstruction' | translate }}</p>
           </div>
 
           <div class="qr-image-wrap">
@@ -68,12 +77,12 @@
         </div>
 
         <div class="form-group">
-          <label>Remarks</label>
+          <label>{{ 'payment.remarks' | translate }}</label>
           <textarea [(ngModel)]="remarks" name="remarks" rows="4"></textarea>
         </div>
 
         <button type="submit" class="pay-btn" [disabled]="loading()">
-          {{ loading() ? 'पेमेंट जतन होत आहे...' : 'पेमेंट सबमिट करा' }}
+          {{ loading() ? ('payment.saving' | translate) : ('payment.submit' | translate) }}
         </button>
       </form>
 
@@ -83,17 +92,18 @@
     </div>
 
     <div class="payment-info-card">
-      <h3>पेमेंट माहिती</h3>
+      <h3>{{ 'payment.infoTitle' | translate }}</h3>
+
       <ul>
-        <li>रोख, GPay किंवा UPI द्वारे पेमेंट करता येईल.</li>
-        <li>GPay / UPI निवडल्यास QR स्कॅन करून पेमेंट करा.</li>
-        <li>पेमेंट केल्यानंतर Transaction ID टाकणे आवश्यक आहे.</li>
-        <li>नोंद जतन झाल्यावर पावती स्क्रीन दिसेल.</li>
+        <li>{{ 'payment.info1' | translate }}</li>
+        <li>{{ 'payment.info2' | translate }}</li>
+        <li>{{ 'payment.info3' | translate }}</li>
+        <li>{{ 'payment.info4' | translate }}</li>
       </ul>
 
       <div class="info-box">
-        <strong>टीप:</strong>
-        <p>धम्म दान आणि कार्यक्रम शुल्काची नोंद admin ला लगेच दिसेल.</p>
+        <strong>{{ 'payment.note' | translate }}:</strong>
+        <p>{{ 'payment.noteText' | translate }}</p>
       </div>
     </div>
   </div>

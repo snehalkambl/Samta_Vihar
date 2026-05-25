@@ -2,11 +2,12 @@ import { CommonModule } from '@angular/common';
 import { Component, inject, signal, computed } from '@angular/core';
 import { RouterLink } from '@angular/router';
 import { IncomeService } from '../../services/income.service';
+import { TranslatePipe } from '../../pipes/translate-pipe';
 
 @Component({
   selector: 'app-income-list',
   standalone: true,
-  imports: [CommonModule, RouterLink],
+  imports: [CommonModule, RouterLink, TranslatePipe],
   templateUrl: './income-list.html',
   styleUrl: './income-list.css',
 })
@@ -18,7 +19,10 @@ export class IncomeList {
   errorMessage = signal('');
 
   totalIncome = computed(() =>
-    this.incomes().reduce((sum, item) => sum + Number(item.amount || 0), 0)
+    this.incomes().reduce(
+      (sum, item) => sum + Number(item.amount || 0),
+      0
+    )
   );
 
   constructor() {

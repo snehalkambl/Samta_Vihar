@@ -1,28 +1,47 @@
 <section class="page-banner">
   <div class="container banner-inner">
     <div>
-      <span class="section-tag">Admin Panel</span>
-      <h2>उत्पन्न नोंदी</h2>
-      <p>विहारातील सर्व उत्पन्न नोंदी आणि एकूण रक्कम येथे पहा.</p>
+      <span class="section-tag">
+        {{ 'incomeList.bannerTag' | translate }}
+      </span>
+
+      <h2>
+        {{ 'incomeList.title' | translate }}
+      </h2>
+
+      <p>
+        {{ 'incomeList.subtitle' | translate }}
+      </p>
     </div>
   </div>
 </section>
 
 <section class="container section">
+
   <div class="top-row">
     <div>
-      <h3>सर्व उत्पन्न यादी</h3>
-      <p>एकूण {{ incomes().length }} उत्पन्न नोंदी</p>
+      <h3>
+        {{ 'incomeList.allIncome' | translate }}
+      </h3>
+
+      <p>
+        {{ 'incomeList.totalPrefix' | translate }}
+        {{ incomes().length }}
+        {{ 'incomeList.totalSuffix' | translate }}
+      </p>
     </div>
 
     <div class="total-card">
-      <span>एकूण उत्पन्न</span>
+      <span>
+        {{ 'incomeList.totalIncome' | translate }}
+      </span>
+
       <strong>₹{{ totalIncome() }}</strong>
     </div>
   </div>
 
   <div *ngIf="loading()" class="info-message">
-    उत्पन्न नोंदी लोड होत आहेत...
+    {{ 'incomeList.loading' | translate }}
   </div>
 
   <div *ngIf="errorMessage()" class="error-message">
@@ -30,48 +49,62 @@
   </div>
 
   <div *ngIf="!loading() && incomes().length === 0" class="info-message">
-    कोणतीही उत्पन्न नोंद उपलब्ध नाही.
+    {{ 'incomeList.empty' | translate }}
   </div>
 
   <div class="table-card" *ngIf="!loading() && incomes().length > 0">
     <table>
       <thead>
         <tr>
-          <th>शीर्षक</th>
-          <th>प्रकार</th>
-          <th>रक्कम</th>
-          <th>तारीख</th>
-          <th>नोंद</th>
+          <th>{{ 'incomeList.heading' | translate }}</th>
+          <th>{{ 'incomeList.type' | translate }}</th>
+          <th>{{ 'incomeList.amount' | translate }}</th>
+          <th>{{ 'incomeList.date' | translate }}</th>
+          <th>{{ 'incomeList.note' | translate }}</th>
         </tr>
       </thead>
 
       <tbody>
         <tr *ngFor="let income of incomes()">
+
           <td>
-            <strong>{{ income.title || income.source || '-' }}</strong>
+            <strong>
+              {{ income.title || income.source || '-' }}
+            </strong>
           </td>
 
           <td>
-            <span class="badge">{{ income.incomeType || income.type || '-' }}</span>
+            <span class="badge">
+              {{ income.incomeType || income.type || '-' }}
+            </span>
           </td>
 
-          <td class="amount">₹{{ income.amount || 0 }}</td>
+          <td class="amount">
+            ₹{{ income.amount || 0 }}
+          </td>
 
-          <td>{{ income.incomeDate || income.date || '-' }}</td>
+          <td>
+            {{ income.incomeDate || income.date || '-' }}
+          </td>
 
-          <td>{{ income.description || income.remark || '-' }}</td>
+          <td>
+            {{ income.description || income.remark || '-' }}
+          </td>
+
         </tr>
       </tbody>
     </table>
   </div>
 
   <div class="back-row">
+
     <a routerLink="/admin/dashboard" class="back-btn">
-      ← Dashboard ला परत जा
+      ← {{ 'incomeList.backDashboard' | translate }}
     </a>
 
     <a routerLink="/admin/income/create" class="add-btn">
-      + उत्पन्न जोडा
+      + {{ 'incomeList.addIncome' | translate }}
     </a>
+
   </div>
 </section>

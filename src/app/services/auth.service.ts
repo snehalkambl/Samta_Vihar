@@ -87,4 +87,29 @@ export class AuthService {
 
     return !!token && role?.trim().toUpperCase() === 'USER';
   }
+
+  forgotPassword(payload: {
+  username: string;
+  resetCode: string;
+  newPassword: string;
+}) {
+  return this.http.post(`${this.apiUrl}/forgot-password`, payload, {
+    responseType: 'text'
+  });
+}
+sendResetOtp(payload: { username: string }) {
+  return this.http.post(`${this.apiUrl}/send-reset-otp`, payload, {
+    responseType: 'text'
+  });
+}
+
+resetPassword(payload: {
+  username: string;
+  otp: string;
+  newPassword: string;
+}) {
+  return this.http.post(`${this.apiUrl}/reset-password`, payload, {
+    responseType: 'text'
+  });
+}
 }

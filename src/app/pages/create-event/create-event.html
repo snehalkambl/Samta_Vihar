@@ -1,15 +1,23 @@
 <section class="page-banner">
   <div class="container banner-inner">
     <div>
-      <span class="section-tag">कार्यक्रम व्यवस्थापन</span>
+      <span class="section-tag">
+        {{ 'createEvent.bannerTag' | translate }}
+      </span>
 
-      <h2>{{ isEditMode ? 'कार्यक्रम अपडेट करा' : 'नवीन कार्यक्रम तयार करा' }}</h2>
+      <h2>
+        {{
+          isEditMode
+            ? ('createEvent.updateTitle' | translate)
+            : ('createEvent.createTitle' | translate)
+        }}
+      </h2>
 
       <p>
         {{
           isEditMode
-            ? 'कार्यक्रमाची माहिती बदलून अपडेट करा.'
-            : 'नवीन कार्यक्रमाची माहिती, फोटो आणि इतर तपशील येथे भरा.'
+            ? ('createEvent.updateSubtitle' | translate)
+            : ('createEvent.createSubtitle' | translate)
         }}
       </p>
     </div>
@@ -35,29 +43,93 @@
     </div>
 
     <form (ngSubmit)="submitForm()">
-      <div class="form-group">
-        <label>कार्यक्रमाचे नाव</label>
-        <input type="text" [(ngModel)]="eventForm.title" name="title" required />
-      </div>
 
-      <div class="form-group">
-        <label>लघु वर्णन</label>
-        <textarea [(ngModel)]="eventForm.shortDescription" name="shortDescription" rows="3"></textarea>
-      </div>
-
-      <div class="form-group">
-        <label>सविस्तर वर्णन</label>
-        <textarea [(ngModel)]="eventForm.fullDescription" name="fullDescription" rows="5"></textarea>
-      </div>
-
+      <!-- EVENT NAME -->
       <div class="form-row">
         <div class="form-group">
-          <label>तारीख</label>
-          <input type="date" [(ngModel)]="eventForm.eventDate" name="eventDate" required />
+          <label>कार्यक्रमाचे नाव मराठी</label>
+
+          <input
+            type="text"
+            [(ngModel)]="eventForm.titleMr"
+            name="titleMr"
+          />
         </div>
 
         <div class="form-group">
-          <label>वेळ</label>
+          <label>Event Name English</label>
+
+          <input
+            type="text"
+            [(ngModel)]="eventForm.titleEn"
+            name="titleEn"
+          />
+        </div>
+      </div>
+
+      <!-- SHORT DESCRIPTION -->
+      <div class="form-row">
+        <div class="form-group">
+          <label>लघु वर्णन मराठी</label>
+
+          <textarea
+            [(ngModel)]="eventForm.shortDescriptionMr"
+            name="shortDescriptionMr"
+            rows="3"
+          ></textarea>
+        </div>
+
+        <div class="form-group">
+          <label>Short Description English</label>
+
+          <textarea
+            [(ngModel)]="eventForm.shortDescriptionEn"
+            name="shortDescriptionEn"
+            rows="3"
+          ></textarea>
+        </div>
+      </div>
+
+      <!-- FULL DESCRIPTION -->
+      <div class="form-row">
+        <div class="form-group">
+          <label>सविस्तर वर्णन मराठी</label>
+
+          <textarea
+            [(ngModel)]="eventForm.fullDescriptionMr"
+            name="fullDescriptionMr"
+            rows="5"
+          ></textarea>
+        </div>
+
+        <div class="form-group">
+          <label>Full Description English</label>
+
+          <textarea
+            [(ngModel)]="eventForm.fullDescriptionEn"
+            name="fullDescriptionEn"
+            rows="5"
+          ></textarea>
+
+             </div>
+      </div>
+
+      <!-- DATE TIME -->
+      <div class="form-row">
+        <div class="form-group">
+          <label>{{ 'createEvent.date' | translate }}</label>
+
+          <input
+            type="date"
+            [(ngModel)]="eventForm.eventDate"
+            name="eventDate"
+            required
+          />
+        </div>
+
+        <div class="form-group">
+          <label>{{ 'createEvent.time' | translate }}</label>
+
           <input
             type="text"
             [(ngModel)]="eventForm.eventTime"
@@ -67,45 +139,151 @@
         </div>
       </div>
 
-      <div class="form-group">
-        <label>स्थळ</label>
-        <input type="text" [(ngModel)]="eventForm.location" name="location" />
-      </div>
-
+      <!-- LOCATION -->
       <div class="form-row">
         <div class="form-group">
-          <label>आयोजक</label>
-          <input type="text" [(ngModel)]="eventForm.organizer" name="organizer" />
+          <label>स्थळ मराठी</label>
+
+          <input
+            type="text"
+            [(ngModel)]="eventForm.locationMr"
+            name="locationMr"
+          />
+
         </div>
 
         <div class="form-group">
-          <label>मुख्य वक्ते</label>
-          <input type="text" [(ngModel)]="eventForm.speakerName" name="speakerName" />
+          <label>Location English</label>
+
+          <input
+            type="text"
+            [(ngModel)]="eventForm.locationEn"
+            name="locationEn"
+          />
         </div>
       </div>
 
+      <!-- ORGANIZER -->
       <div class="form-row">
         <div class="form-group">
-          <label>संपर्क व्यक्ती</label>
-          <input type="text" [(ngModel)]="eventForm.contactPerson" name="contactPerson" />
+          <label>आयोजक मराठी</label>
+
+          <input
+            type="text"
+            [(ngModel)]="eventForm.organizerMr"
+            name="organizerMr"
+          />
+
         </div>
 
         <div class="form-group">
-          <label>संपर्क मोबाईल</label>
-          <input type="text" [(ngModel)]="eventForm.contactMobile" name="contactMobile" />
+          <label>Organizer English</label>
+
+          <input
+            type="text"
+            [(ngModel)]="eventForm.organizerEn"
+            name="organizerEn"
+          />
+        </div>
+      </div>
+
+      <!-- SPEAKER -->
+      <div class="form-row">
+        <div class="form-group">
+          <label>मुख्य वक्ते मराठी</label>
+
+          <input
+            type="text"
+            [(ngModel)]="eventForm.speakerNameMr"
+            name="speakerNameMr"
+          />
+
+        </div>
+
+        <div class="form-group">
+          <label>Main Speaker English</label>
+
+          <input
+            type="text"
+            [(ngModel)]="eventForm.speakerNameEn"
+            name="speakerNameEn"
+          />
+        </div>
+      </div>
+
+      <!-- CONTACT PERSON -->
+      <div class="form-row">
+        <div class="form-group">
+          <label>संपर्क व्यक्ती मराठी</label>
+
+          <input
+            type="text"
+            [(ngModel)]="eventForm.contactPersonMr"
+            name="contactPersonMr"
+          />
+        </div>
+
+        <div class="form-group">
+          <label>Contact Person English</label>
+
+          <input
+            type="text"
+            [(ngModel)]="eventForm.contactPersonEn"
+            name="contactPersonEn"
+          />
         </div>
       </div>
 
       <div class="form-group">
-        <label>सूचना / नियम</label>
-        <textarea [(ngModel)]="eventForm.rules" name="rules" rows="4"></textarea>
+        <label>{{ 'createEvent.contactMobile' | translate }}</label>
+
+        <input
+          type="text"
+          [(ngModel)]="eventForm.contactMobile"
+          name="contactMobile"
+        />
       </div>
 
+      <!-- RULES -->
+      <div class="form-row">
+        <div class="form-group">
+          <label>सूचना / नियम मराठी</label>
+
+          <textarea
+            [(ngModel)]="eventForm.rulesMr"
+            name="rulesMr"
+            rows="4"
+          ></textarea>
+
+        </div>
+
+        <div class="form-group">
+          <label>Instructions / Rules English</label>
+
+          <textarea
+            [(ngModel)]="eventForm.rulesEn"
+            name="rulesEn"
+            rows="4"
+          ></textarea>
+        </div>
+      </div>
+
+      <!-- IMAGES -->
       <div class="upload-card">
         <div class="form-group">
-          <label>{{ isEditMode ? 'मुख्य फोटो बदला' : 'मुख्य फोटो अपलोड करा' }}</label>
+          <label>
+            {{
+              isEditMode
+                ? ('createEvent.changeMainPhoto' | translate)
+                : ('createEvent.uploadMainPhoto' | translate)
+            }}
+          </label>
 
-          <input type="file" accept="image/*" (change)="onCoverImageSelected($event)" />
+          <input
+            type="file"
+            accept="image/*"
+            (change)="onCoverImageSelected($event)"
+          />
 
           <div class="image-preview" *ngIf="coverImagePreview">
             <img [src]="coverImagePreview" alt="Cover Preview" />
@@ -113,53 +291,85 @@
         </div>
 
         <div class="form-group">
-          <label>इतर फोटो अपलोड करा</label>
+          <label>{{ 'createEvent.uploadOtherPhotos' | translate }}</label>
 
-          <input type="file" accept="image/*" multiple (change)="onGalleryImagesSelected($event)" />
+          <input
+            type="file"
+            accept="image/*"
+            multiple
+            (change)="onGalleryImagesSelected($event)"
+          />
 
-          <div class="gallery-preview" *ngIf="galleryImagePreviews.length > 0">
-            <img *ngFor="let img of galleryImagePreviews" [src]="img" alt="Gallery Preview" />
+          <div
+            class="gallery-preview"
+            *ngIf="galleryImagePreviews.length > 0"
+          >
+            <img
+              *ngFor="let img of galleryImagePreviews"
+              [src]="img"
+              alt="Gallery Preview"
+            />
           </div>
         </div>
       </div>
 
+      <!-- AMOUNT -->
       <div class="form-row">
         <div class="form-group">
-          <label>शुल्क</label>
-          <input type="number" [(ngModel)]="eventForm.amount" name="amount" />
+          <label>{{ 'createEvent.fee' | translate }}</label>
+
+          <input
+            type="number"
+            [(ngModel)]="eventForm.amount"
+            name="amount"
+          />
         </div>
 
         <div class="form-group checkbox-group">
           <label>
-            <input type="checkbox" [(ngModel)]="eventForm.isPaid" name="isPaid" />
-            सशुल्क कार्यक्रम
+            <input
+              type="checkbox"
+              [(ngModel)]="eventForm.isPaid"
+              name="isPaid"
+            />
+
+            {{ 'createEvent.paidEvent' | translate }}
           </label>
         </div>
       </div>
 
       <div class="form-group">
-        <label>स्थिती</label>
-        <select [(ngModel)]="eventForm.status" name="status">
+        <label>{{ 'createEvent.status' | translate }}</label>
+
+        <select
+          [(ngModel)]="eventForm.status"
+          name="status"
+        >
           <option value="ACTIVE">ACTIVE</option>
           <option value="INACTIVE">INACTIVE</option>
         </select>
       </div>
 
       <div class="button-row">
-        <button type="submit" class="submit-btn" [disabled]="loading()">
+        <button
+          type="submit"
+          class="submit-btn"
+          [disabled]="loading()"
+        >
           {{
             loading()
-              ? 'जतन होत आहे...'
+              ? ('createEvent.saving' | translate)
               : isEditMode
-                ? 'कार्यक्रम अपडेट करा'
-                : 'कार्यक्रम जतन करा'
+                ? ('createEvent.updateButton' | translate)
+                : ('createEvent.saveButton' | translate)
           }}
         </button>
 
         <a routerLink="/events" class="cancel-btn">
-          रद्द करा
+          {{ 'createEvent.cancel' | translate }}
         </a>
       </div>
+
     </form>
   </div>
 </section>

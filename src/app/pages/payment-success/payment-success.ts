@@ -2,11 +2,12 @@ import { CommonModule } from '@angular/common';
 import { Component, inject, signal } from '@angular/core';
 import { Router, RouterModule } from '@angular/router';
 import { Payment } from '../../models/payment.model';
+import { TranslatePipe } from '../../pipes/translate-pipe';
 
 @Component({
   selector: 'app-payment-success',
   standalone: true,
-  imports: [CommonModule, RouterModule],
+  imports: [CommonModule, RouterModule, TranslatePipe],
   templateUrl: './payment-success.html',
   styleUrl: './payment-success.css'
 })
@@ -23,6 +24,7 @@ export class PaymentSuccessComponent {
       this.payment.set(statePayment);
     } else {
       const historyStatePayment = history.state?.payment as Payment | undefined;
+
       if (historyStatePayment) {
         this.payment.set(historyStatePayment);
       }

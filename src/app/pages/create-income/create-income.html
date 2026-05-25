@@ -1,9 +1,21 @@
 <section class="page-banner">
+
   <div class="container banner-inner">
+
     <div>
-      <span class="section-tag">Admin Entry</span>
-      <h2>नवीन उत्पन्न नोंद</h2>
-      <p>विहारातील नवीन उत्पन्न नोंद अचूक तपशीलांसह येथे जतन करा.</p>
+
+      <span class="section-tag">
+        {{ 'createIncome.bannerTag' | translate }}
+      </span>
+
+      <h2>
+        {{ 'createIncome.title' | translate }}
+      </h2>
+
+      <p>
+        {{ 'createIncome.subtitle' | translate }}
+      </p>
+
     </div>
 
     <div class="mini-panchashil" aria-hidden="true">
@@ -13,12 +25,17 @@
       <span class="white"></span>
       <span class="orange"></span>
     </div>
+
   </div>
+
 </section>
 
 <section class="container section">
+
   <div class="form-layout">
+
     <div class="form-card">
+
       <div *ngIf="successMessage()" class="success-message">
         {{ successMessage() }}
       </div>
@@ -28,82 +45,223 @@
       </div>
 
       <form (ngSubmit)="submitForm()">
+
         <div class="form-group">
-          <label>उत्पन्न प्रकार</label>
-          <select [(ngModel)]="incomeForm.incomeType" name="incomeType">
-            <option value="MARRIAGE">लग्न समारंभ</option>
-            <option value="SMRUTI_DIN">स्मृतीदिन</option>
-            <option value="BIRTHDAY">वाढदिवस</option>
-            <option value="NAMING_CEREMONY">बारसे / नामकरण</option>
-            <option value="MEETING">सभा / मिटिंग</option>
-            <option value="HALL_RENT">हॉल भाडे</option>
-            <option value="DONATION">देणगी</option>
-            <option value="OTHER">इतर</option>
+
+          <label>
+            {{ 'createIncome.incomeType' | translate }}
+          </label>
+
+          <select
+            [(ngModel)]="incomeForm.incomeType"
+            name="incomeType"
+          >
+
+            <option value="MARRIAGE">
+              {{ 'createIncome.marriage' | translate }}
+            </option>
+
+            <option value="SMRUTI_DIN">
+              {{ 'createIncome.smruti' | translate }}
+            </option>
+
+            <option value="BIRTHDAY">
+              {{ 'createIncome.birthday' | translate }}
+            </option>
+
+            <option value="NAMING_CEREMONY">
+              {{ 'createIncome.naming' | translate }}
+            </option>
+
+            <option value="MEETING">
+              {{ 'createIncome.meeting' | translate }}
+            </option>
+
+            <option value="HALL_RENT">
+              {{ 'createIncome.hallRent' | translate }}
+            </option>
+
+            <option value="DONATION">
+              {{ 'createIncome.donation' | translate }}
+            </option>
+
+            <option value="OTHER">
+              {{ 'createIncome.other' | translate }}
+            </option>
+
           </select>
+
         </div>
 
         <div class="form-group">
-          <label>नाव</label>
-          <input type="text" [(ngModel)]="incomeForm.personName" name="personName" required />
+
+          <label>
+            {{ 'createIncome.name' | translate }}
+          </label>
+
+          <input
+            type="text"
+            [(ngModel)]="incomeForm.personName"
+            name="personName"
+            required
+          />
+
         </div>
 
         <div class="form-group">
-          <label>मोबाईल नंबर</label>
-          <input type="text" [(ngModel)]="incomeForm.mobile" name="mobile" />
+
+          <label>
+            {{ 'createIncome.mobile' | translate }}
+          </label>
+
+          <input
+            type="text"
+            [(ngModel)]="incomeForm.mobile"
+            name="mobile"
+          />
+
         </div>
 
         <div class="form-group">
-          <label>वर्णन</label>
-          <textarea [(ngModel)]="incomeForm.description" name="description" rows="3"></textarea>
+
+          <label>
+            {{ 'createIncome.description' | translate }}
+          </label>
+
+          <textarea
+            [(ngModel)]="incomeForm.description"
+            name="description"
+            rows="3"
+          ></textarea>
+
         </div>
 
         <div class="form-row">
+
           <div class="form-group">
-            <label>रक्कम</label>
-            <input type="number" [(ngModel)]="incomeForm.amount" name="amount" required />
+
+            <label>
+              {{ 'createIncome.amount' | translate }}
+            </label>
+
+            <input
+              type="number"
+              [(ngModel)]="incomeForm.amount"
+              name="amount"
+              required
+            />
+
           </div>
 
           <div class="form-group">
-            <label>दिनांक</label>
-            <input type="date" [(ngModel)]="incomeForm.incomeDate" name="incomeDate" required />
+
+            <label>
+              {{ 'createIncome.date' | translate }}
+            </label>
+
+            <input
+              type="date"
+              [(ngModel)]="incomeForm.incomeDate"
+              name="incomeDate"
+              required
+            />
+
           </div>
+
         </div>
 
         <div class="form-group">
-          <label>पेमेंट मोड</label>
-          <select [(ngModel)]="incomeForm.paymentMode" name="paymentMode">
+
+          <label>
+            {{ 'createIncome.paymentMode' | translate }}
+          </label>
+
+          <select
+            [(ngModel)]="incomeForm.paymentMode"
+            name="paymentMode"
+          >
+
             <option value="CASH">Cash</option>
             <option value="GPAY">GPay</option>
             <option value="PHONEPE">PhonePe</option>
             <option value="BANK_TRANSFER">Bank Transfer</option>
             <option value="ONLINE">Online</option>
+
           </select>
+
         </div>
 
         <div class="form-group">
-          <label>Remarks</label>
-          <textarea [(ngModel)]="incomeForm.remarks" name="remarks" rows="3"></textarea>
+
+          <label>
+            {{ 'createIncome.remarks' | translate }}
+          </label>
+
+          <textarea
+            [(ngModel)]="incomeForm.remarks"
+            name="remarks"
+            rows="3"
+          ></textarea>
+
         </div>
 
-        <button type="submit" [disabled]="loading()">
-          {{ loading() ? 'जतन होत आहे...' : 'उत्पन्न नोंद जतन करा' }}
+        <button
+          type="submit"
+          [disabled]="loading()"
+        >
+
+          {{
+            loading()
+              ? ('createIncome.saving' | translate)
+              : ('createIncome.saveBtn' | translate)
+          }}
+
         </button>
+
       </form>
+
     </div>
 
     <div class="side-info-card">
-      <h3>नोंद करताना लक्षात ठेवा</h3>
+
+      <h3>
+        {{ 'createIncome.infoTitle' | translate }}
+      </h3>
+
       <ul>
-        <li>उत्पन्न प्रकार योग्य निवडा.</li>
-        <li>रक्कम आणि दिनांक अचूक भरा.</li>
-        <li>पेमेंट मोड नोंदवल्यास नंतरचा हिशोब सोपा होतो.</li>
-        <li>Remarks मध्ये अतिरिक्त माहिती टाकू शकता.</li>
+
+        <li>
+          {{ 'createIncome.info1' | translate }}
+        </li>
+
+        <li>
+          {{ 'createIncome.info2' | translate }}
+        </li>
+
+        <li>
+          {{ 'createIncome.info3' | translate }}
+        </li>
+
+        <li>
+          {{ 'createIncome.info4' | translate }}
+        </li>
+
       </ul>
 
       <div class="info-box">
-        <strong>उदाहरणे:</strong>
-        <p>लग्न समारंभ, स्मृतीदिन, वाढदिवस, हॉल भाडे, देणगी इ.</p>
+
+        <strong>
+          {{ 'createIncome.exampleTitle' | translate }}
+        </strong>
+
+        <p>
+          {{ 'createIncome.exampleText' | translate }}
+        </p>
+
       </div>
+
     </div>
+
   </div>
+
 </section>

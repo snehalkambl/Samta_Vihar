@@ -1,9 +1,21 @@
 <section class="finance-banner">
+
   <div class="finance-container finance-banner-inner">
+
     <div>
-      <span class="finance-tag">Admin Dashboard</span>
-      <h2>आर्थिक सारांश</h2>
-      <p>विहाराचे एकूण उत्पन्न, एकूण खर्च आणि उर्वरित शिल्लक येथे पाहा.</p>
+
+      <span class="finance-tag">
+        {{ 'finance.bannerTag' | translate }}
+      </span>
+
+      <h2>
+        {{ 'finance.title' | translate }}
+      </h2>
+
+      <p>
+        {{ 'finance.subtitle' | translate }}
+      </p>
+
     </div>
 
     <div class="mini-panchashil" aria-hidden="true">
@@ -13,49 +25,106 @@
       <span class="white"></span>
       <span class="orange"></span>
     </div>
+
   </div>
+
 </section>
 
 <section class="finance-container finance-section">
+
   <div *ngIf="loading()" class="finance-info-message">
-    आर्थिक माहिती लोड होत आहे...
+    {{ 'finance.loading' | translate }}
   </div>
 
   <div *ngIf="errorMessage()" class="finance-error-message">
     {{ errorMessage() }}
   </div>
 
-  <div class="finance-summary-grid" *ngIf="!loading() && !errorMessage()">
+  <div
+    class="finance-summary-grid"
+    *ngIf="!loading() && !errorMessage()"
+  >
+
     <div class="finance-summary-card income">
-      <span class="card-label">Income</span>
-      <h3>एकूण उत्पन्न</h3>
+
+      <span class="card-label">
+        {{ 'finance.incomeCard' | translate }}
+      </span>
+
+      <h3>
+        {{ 'finance.totalIncome' | translate }}
+      </h3>
+
       <p>₹{{ totalIncome() }}</p>
-      <small>नोंदवलेले सर्व उत्पन्न</small>
+
+      <small>
+        {{ 'finance.incomeNote' | translate }}
+      </small>
+
     </div>
 
     <div class="finance-summary-card expense">
-      <span class="card-label">Expense</span>
-      <h3>एकूण खर्च</h3>
+
+      <span class="card-label">
+        {{ 'finance.expenseCard' | translate }}
+      </span>
+
+      <h3>
+        {{ 'finance.totalExpense' | translate }}
+      </h3>
+
       <p>₹{{ totalExpense() }}</p>
-      <small>नोंदवलेले सर्व खर्च</small>
+
+      <small>
+        {{ 'finance.expenseNote' | translate }}
+      </small>
+
     </div>
 
     <div class="finance-summary-card balance">
-      <span class="card-label">Balance</span>
-      <h3>शिल्लक</h3>
+
+      <span class="card-label">
+        {{ 'finance.balanceCard' | translate }}
+      </span>
+
+      <h3>
+        {{ 'finance.balance' | translate }}
+      </h3>
+
       <p>₹{{ balance() }}</p>
-      <small>उत्पन्न - खर्च</small>
+
+      <small>
+        {{ 'finance.balanceNote' | translate }}
+      </small>
+
     </div>
+
   </div>
 
-  <div class="finance-download-card" *ngIf="!loading() && !errorMessage()">
-    <h3>Excel डाउनलोड</h3>
-    <p>एकाच sheet मध्ये आर्थिक सारांश, income list आणि expense list डाउनलोड करा.</p>
+  <div
+    class="finance-download-card"
+    *ngIf="!loading() && !errorMessage()"
+  >
+
+    <h3>
+      {{ 'finance.downloadTitle' | translate }}
+    </h3>
+
+    <p>
+      {{ 'finance.downloadSubtitle' | translate }}
+    </p>
 
     <div class="finance-download-actions">
-      <button class="finance-download-btn" (click)="downloadFinanceExcel()">
-        पूर्ण आर्थिक अहवाल डाउनलोड
+
+      <button
+        class="finance-download-btn"
+        (click)="downloadFinanceExcel()"
+      >
+        {{ 'finance.downloadBtn' | translate }}
       </button>
+
     </div>
+
   </div>
+
 </section>
